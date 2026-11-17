@@ -1,29 +1,41 @@
 # 金融學院教師資料整合
 
-已按澳門城市大學金融學院[全職教師名單](https://fof.cityu.edu.mo/faculty)整合 43 位老師、86 個中英文個人頁，資料擷取日期為 2026-11-17。範圍為該名單上的全職教師，包括院領導、課程主任、教授、副教授、助理教授及講師。
+已按澳門城市大學金融學院[全職教師名單](https://fof.cityu.edu.mo/faculty)，把 **43 位老師、86 個中英文個人頁**整合至你上載的 FOF Profile Studio 3.10 備份格式。資料擷取日期：2026-11-17。
 
-## 已備妥資料
+## 下載及使用
 
-- [data/faculty_sources.json](data/faculty_sources.json)：每位老師的中英文姓名、職銜、指導資格、名單分組、照片網址、個人頁網址，以及個人頁完整正文 HTML 和文字。原頁的學歷、簡介、教學、研究、工作經驗、論文及其他章節全部保留；沒有摘要或翻譯替代原文。
-- [DATA_QUALITY.md](DATA_QUALITY.md)：已發現的原站問題及核對結果。
-- [scripts/collect_faculty_sources.py](scripts/collect_faculty_sources.py)：可重複執行的資料擷取程式。
+1. 下載 [FOF_Profile_Backup_All_Faculty_2026-11-17.json](FOF_Profile_Backup_All_Faculty_2026-11-17.json)。
+2. 開啟你原有的 `FOF_Profile_Studio_v3_10.html`，按「還原JSON備份」，選擇新 JSON。
+3. 在「老師」及語言選單選取個人頁，即可預覽或下載代碼。
 
-## 生成器匯入狀態
+亦可直接下載 [全部老師中英文代碼 ZIP](FOF_Profile_Codes_All_Faculty_2026-11-17.zip)，內含 **86 份**可貼入學院後台正文原始碼模式的 `.txt` 代碼，以及匯出說明。
 
-**此 JSON 是資料來源快照，尚未轉成現有 HTML 生成器的匯入格式。**
+這份 JSON 包含 43 筆教師資料、1,033 筆內容明細、712 筆研究成果及 7 項共用設定。研究成果包括論文、工作論文、會議成果、專著及書籍章節，不是單指已發表期刊論文。
 
-本次對話未提供可讀取的原始 JSON 備份或 HTML 生成器附件；指定 repository 原本亦為空。需要兩個原檔，才能確認欄位結構、合併老師紀錄及驗證實際匯入。網站上的新版示範頁只提供排版結果，不能證明生成器的 JSON 結構。
+## 整合方式及核對
 
-快照使用 `fof-faculty-source-snapshot/v1` 格式，`profiles` 依中文教師名單排序，每筆具有 `id`、`zh`、`en`。`studio_import_status` 明確標示 `pending_original_json_and_html_schema`。來源未提供的資料沒有自行補寫；中英文版本之間的差異亦保留原樣。
+- 沿用原備份的 `fof-profile-studio`、`schemaVersion: 2` 結構，完整保留 `templateCSS` 及共用設定。
+- 原有 4 位老師的 ID 和已填基本資料保留，包括 `_adriancheung`；補齊其餘老師及原頁內容，避免重建院長的重複紀錄。
+- 中英文內容分別來自各自官方個人頁，保留各語言的排序及原文。不同段落數按各語言獨立顯示，沒有自行翻譯網站未提供的章節。
+- 研究成果按 DOI、明確題目或[已核對的雙語引用配對](data/reviewed_bilingual_pairs.json)合併，保留原始中英引用及來源網址。未能可靠拆成題目、作者、期刊的引用，使用生成器原有「完整引用」顯示方式。
+- 已使用上載的原版 Studio 實測 JSON 還原、43 位老師的中英文代碼生成、JSON 匯出後重新還原、批量 ZIP 及本機自動儲存，沒有資料格式錯誤或 JavaScript 執行錯誤。
 
-## 重新擷取
+詳見 [整合報告](INTEGRATION_REPORT.md)、[原站資料差異](DATA_QUALITY.md)及[驗證結果](data/integration_validation.json)。資料狀態保留「待核對」，供你日後與老師確認；學院網站後台尚未修改。
+
+## 原始檔與可重複執行程式
+
+上載的 `FOF_Profile_Backup_adriancheung_2026-11-17.json` 及 `FOF_Profile_Studio_v3_10.html` 保留原檔。
+
+- [data/faculty_sources.json](data/faculty_sources.json)：完整官方正文 HTML／文字、照片網址、名單資訊及原始回應 SHA-256，屬來源快照。
+- [scripts/collect_faculty_sources.py](scripts/collect_faculty_sources.py)：重新擷取公開頁面。
+- [scripts/integrate_faculty.py](scripts/integrate_faculty.py)：把來源快照合併至原備份，產生整合 JSON。
+- [scripts/verify_integration.py](scripts/verify_integration.py)：逐項來源核對及原版 Studio 瀏覽器驗證。
 
 ```sh
 python -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/collect_faculty_sources.py
+.venv/bin/pip install -r requirements-test.txt
+.venv/bin/python scripts/integrate_faculty.py
+CHROMIUM_PATH=/usr/bin/chromium .venv/bin/python scripts/verify_integration.py
 ```
 
-程式下載公開頁面至 `work/source/`，再輸出 JSON。加上 `--use-cache` 可沿用本機快取。程式檢查名單內重複老師、中英文配對、空白正文，以及 HTTP 200 回傳的 404 錯誤頁。每個個人頁保留原始回應的 SHA-256，方便核對。
-
-此 repository 的資料整理不會修改學院網站後台。
+瀏覽器驗證需要已安裝的 Chromium，可透過 `CHROMIUM_PATH` 指定。來源快照及配對表保留原站矛盾，不代表老師已確認每項資料。
