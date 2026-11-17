@@ -2,8 +2,24 @@
   "teachers": 43,
   "source_language_pages": 86,
   "source_research_citations_accounted_for": 1378,
-  "content_rows": 1033,
-  "research_rows": 712,
+  "content_rows": 1025,
+  "research_rows": 696,
+  "career_rows_with_dates": 125,
+  "all_research_titles_rendered_in_native_fields": true,
+  "structured_bibliography_fields": {
+    "文章名": 696,
+    "作者": 683,
+    "期刊名": 635,
+    "年份": 646,
+    "DOI": 404
+  },
+  "source_fragments_excluded_with_audit": [
+    {
+      "teacher": "ygwang",
+      "citation": "and Economics Press, 2015",
+      "reason": "官方中英頁均只剩出版社與年份的殘句，不能識別為一項完整文獻；原文保留在來源快照。"
+    }
+  ],
   "source_content_items_accounted_for": 1886,
   "preserved_original_edit_variants": [
     {

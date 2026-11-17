@@ -1,0 +1,1542 @@
+{
+  "teachers": 43,
+  "content_rows": 1025,
+  "research_rows": 696,
+  "career_rows": 125,
+  "career_time_fields_filled": 125,
+  "month_policy": "只有原文提供月份才使用YYYY/MM；只有年份保留YYYY，不補月份。",
+  "fields_filled": {
+    "文章名": 696,
+    "作者": 683,
+    "期刊名": 635,
+    "年份": 646,
+    "DOI": 404
+  },
+  "crossref_records": 403,
+  "merged_bilingual_references": [
+    {
+      "teacher": "ygwang",
+      "zh": "日本政府养老投资基金资产配置和投资收益分析",
+      "en": "An Analysis of Japan’s GRIF Investment Strategies and Returns"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "人工智能、机器学习与银行业资管业务",
+      "en": "Artificial Intelligence, Machine learning and Asset Management at Banks"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "跨境支付、分布式记账、数字货币与人民币国际化",
+      "en": "Cross-border Payments, Distributed Ledger Technology, Digital Currencies and RMB Internationalization"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "拜登政府的经济政策与中美经贸关系展望",
+      "en": "The Economic Policy of the Biden Administration and Outlook on Sino-US Economic and Trade Ties"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "数字金融、业务转型与未来银行探讨",
+      "en": "Digital Finance，Business Transformation and the Future Bank"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "日本都市银行三巨头的国际经营效益及启示",
+      "en": "International Banking of Japan’s Big 3 City Banks and Economic Benefits"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "中美第一阶段经贸协议目标、现实挑战与未来展望",
+      "en": "The Quantitative Target and Feasibility Study of Sino-U.S. Economic and Trade Agreement for Phase One and Two"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "大数据在商业银行中的应用研究",
+      "en": "Big Data Analytics and Application in Commercial Banks"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "摩根大通银行的经营特色及启示",
+      "en": "JPMorgan Chase’s Management Features and Implications"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "粤港澳资本市场开放的监管机制与发展差异研究",
+      "en": "A Study of Deregulation of Capital Markets and Development Gaps in the Guangdong-Hong Kong-Macau Bay"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "我国商业银行盈利模式、脆弱性及创新模式探讨",
+      "en": "Profit Model, Vulnerability and Innovations for Chinese Banks"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "东京都市圈人口变迁、产业布局与结构调整",
+      "en": "Population Shift, Industry Layout and Structural Adjustment in the Tokyo Bay Area"
+    },
+    {
+      "teacher": "ygwang",
+      "zh": "金融科技对商业银行价值链的冲击及应对策略",
+      "en": "The Impact of Fintech on the Value Creation Chain of Commercial Banks and Winning Strategy"
+    }
+  ],
+  "incomplete_source_fragments": [
+    {
+      "teacher": "ygwang",
+      "citation": "and Economics Press, 2015",
+      "reason": "官方中英頁均只剩出版社與年份的殘句，不能識別為一項完整文獻；原文保留在來源快照。"
+    }
+  ],
+  "additional_reviewed_merges": [
+    {
+      "teacher": "evakhong",
+      "title": "推動澳門金融科技生態發展的路徑研究",
+      "merged_citation": "陳國雄、鄺婉樺:推動澳門金融科技生態發展的路徑研究，城市情報 ，2023年4 期（2 月）238-240頁。",
+      "basis": "對照題目、作者、期刊、年份及頁碼，相同成果的重複引用合併；原引文保留。"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "分而治之及其再分配效应",
+      "merged_citation": "Chen, X., Gong, C., & Zhang, L. (2017) Divide-and-Rule and Its Redistribution Effect, Economic Research Journal (Chinese，《经济研究》), 12, 149-163.",
+      "basis": "對照題目、作者、期刊、年份及頁碼，相同成果的重複引用合併；原引文保留。"
+    }
+  ],
+  "restored_year_prefixes": [],
+  "missing_authors": [
+    {
+      "teacher": "cndai",
+      "title": "Education Transmission, Peers, and Children’s Development: Evidence from Secondary School Students in China",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "Children’s Peers and Parents’ Efforts in Intergenerational Education Transmission: Evidence from China",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "The Production of Cognitive Ability in Chinese Children: Home inputs and Test Score Gaps",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "The Effect of Academic Ordinal Rank on Secondary School Students’ Cognitive and Non-cognitive Development",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "The Determinants and Consequences of Disclaimer Disclosures for Audit Committees",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Does land titling reform promote urban-rural migration? Evidence from the rural households in China",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Estimating the technical efficiency of crop production in China: A metafrontier analysis",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Mechanism analysis on the impact of land titling reform on rural household income structure",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Strategic Alignment Under MIC25: Unlocking Innovation in Enterprises in an Emerging Economy",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Seizing the Opportunity: Climate Policy Uncertainty Exposure and the U.S. Withdrawal from the Paris Accord",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Hidden Costs of Rumor Clarification",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Promoting Digital Transformation: The Spill Over Effect of Government Venture Capital via Common Institutional Shareholding Network",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fanyang",
+      "title": "What Do Managers Learn from Visitors? Evidence from the Chinese Capital Market",
+      "status": "工作論文"
+    }
+  ],
+  "missing_publication_venue": [
+    {
+      "teacher": "evakhong",
+      "title": "新形勢下中國企業戰略發展案例",
+      "type": "專著",
+      "status": "已發表"
+    },
+    {
+      "teacher": "tongfu",
+      "title": "Bird on a wire: Managerial superstition and stock price crash risk",
+      "type": "期刊論文",
+      "status": "修改後重投"
+    },
+    {
+      "teacher": "tongfu",
+      "title": "Dividend Payout in Financially Distressed Firms and Probability of Bankruptcy",
+      "type": "期刊論文",
+      "status": "修改後重投"
+    },
+    {
+      "teacher": "tongfu",
+      "title": "Tourism remolds people: evidence of altruistic behavior",
+      "type": "期刊論文",
+      "status": "修改後重投"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "A Dynamic Model of Preferences, Behaviors, and Social Norms",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "The Double-Edged Sword: How do Military Interventions Affect the Dynamics of Civil Conflict and Regime Transitions",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "How Do Authoritarian Leaders Vary in Their Implementation of The Divide-and-Rule Strategy? : A Theoretical Study",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "Lying in Groups: Team Incentives and Social Learning",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "Peer Effects on Dishonesty: Teammates vs. Competitors",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "Labor Market Segmentation in a Transitional Economy: A Theoretical Study",
+      "type": "會議論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xzchen",
+      "title": "Lying and Its Spreading Channels: A Behavioral and Experimental Study",
+      "type": "會議論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "Education Transmission, Peers, and Children’s Development: Evidence from Secondary School Students in China",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "Children’s Peers and Parents’ Efforts in Intergenerational Education Transmission: Evidence from China",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "The Production of Cognitive Ability in Chinese Children: Home inputs and Test Score Gaps",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cndai",
+      "title": "The Effect of Academic Ordinal Rank on Secondary School Students’ Cognitive and Non-cognitive Development",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "The Impact of Accounting Fraud on Auditor Quality Disclosures in Non-Fraudulent Audit Clients",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "The Determinants and Consequences of Disclaimer Disclosures for Audit Committees",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "Mitigating Political Risk with Politically Connected Directors: Evidence from the US-China Trade War",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "Director Experience Breadth and Firm Performance",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jrgao",
+      "title": "CEOs’ Organizational Identification and Voluntary Disclosure",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Urban Residential Developments Pattern in the Challenges of the Land market and Climate Change",
+      "type": "期刊論文",
+      "status": "審閱中"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Does Flavor Matter? Market Size and Demand Changes of Tobacco Products Under the FDA Policy",
+      "type": "工作論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "The Farmer Adoption of Agricultural Conservation Practices and Water Quality",
+      "type": "工作論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Do People Value What They See? - The Economics Impact of the Adoption of Agricultural Conservation Practices in the Housing Market",
+      "type": "工作論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Canadian Patent Value Under Different Patent Regimes",
+      "type": "工作論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Farmland Conservation and Additionality in the Face of Urbanization",
+      "type": "期刊論文",
+      "status": "審閱中"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "Urban Development, Agricultural Land Markets and Weather Shocks: Implications for the Timing of New Development",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "The Role of Agricultural Land Markets on Urban Development",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyhua",
+      "title": "The Urban Climate Effect on Farmland Value in the Chesapeake Bay Area",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Identity Disclosure and Trust Behavior: Evidence From An Online Experiment on WeChat",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Risk Perception and Bureaucratic Task Allocation: Evidence from Chinese Officials’ Zodiac Years",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "AI Speak, Users Step Back: A Field Experiment",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Unrelated Risks Increases Risk-Taking: Experimental Evidence",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "AI-Generated Financial Advice Shifts Investor Risk Preferences: Experimental Evidence of Asymmetric Persuasion",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Pessimistic and Optimistic Biases in Horizontal and Vertical Competitions",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Ethical Behaviors and Performance Pressure",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Social Media and Prosocial Behavior",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "ypli",
+      "title": "Economic Behaviors When Involved in the Pandemic: Evidence from the Covid-19",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "yunling",
+      "title": "Price Path, Investor Learning, and the Capital Allocation in Mutual Fund Industry",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "yunling",
+      "title": "Before thrive, first survive: The threat of losing control and corporate ESG performance",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "cailiu",
+      "title": "Internal Government Guarantee and Trade Credit Policy: Evidence from Chinese SOE default",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Does land titling reform promote urban-rural migration? Evidence from the rural households in China",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Estimating the technical efficiency of crop production in China: A metafrontier analysis",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xsma",
+      "title": "Mechanism analysis on the impact of land titling reform on rural household income structure",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xcpang",
+      "title": "Chance constrained program with quadratic randomness: A unified approach based on Gaussian mixture distribution",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xcpang",
+      "title": "Delta-Gamma-GMM: A semi-parametric VaR measure of optioned portfolios",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "xcpang",
+      "title": "Comparison between linear opinion pool and OLS-based stacking",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fzwang",
+      "title": "An integrated assessment shows AI will worsen climate change",
+      "type": "會議論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fzwang",
+      "title": "The Weitzman premium on the social cost of carbon",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Strategic Alignment Under MIC25: Unlocking Innovation in Enterprises in an Emerging Economy",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Seizing the Opportunity: Climate Policy Uncertainty Exposure and the U.S. Withdrawal from the Paris Accord",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Hidden Costs of Rumor Clarification",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "luwang",
+      "title": "Promoting Digital Transformation: The Spill Over Effect of Government Venture Capital via Common Institutional Shareholding Network",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "yanwang",
+      "title": "No One-Size-Fits-All Tale: The Diversity and Complexity in Asset Pricing across Global Markets",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "yanwang",
+      "title": "False Discovery Rate Control and Factor Investing",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fanyang",
+      "title": "What Do Managers Learn from Visitors? Evidence from the Chinese Capital Market",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fanyang",
+      "title": "Local Government Information Disclosure and Corporate Innovation",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "fanyang",
+      "title": "Real Effect of Cross-border Regulation Cooperation: Evidence from the Subsidiary Location Choice of U.S. MNEs",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyzhao",
+      "title": "Analysts’ cultural preference: A new approach based on culture of firms under coverage",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyzhao",
+      "title": "Manager cultural preference and mutual fund performance",
+      "type": "期刊論文",
+      "status": "工作論文"
+    },
+    {
+      "teacher": "jyzhao",
+      "title": "Confirmatory Bias in Analyst Forecasts: Evidence from the Chinese Market",
+      "type": "期刊論文",
+      "status": "工作論文"
+    }
+  ],
+  "career_dates": [
+    {
+      "teacher": "_adriancheung",
+      "order": 1,
+      "zh_time": "2019 – 至今",
+      "en_time": "2019 – Present",
+      "zh": "澳門城市大學金融學教授兼院長",
+      "en": "Professor of Finance and Dean, City University of Macau"
+    },
+    {
+      "teacher": "_adriancheung",
+      "order": 2,
+      "zh_time": "2018 – 2019",
+      "en_time": "2018 – 2019",
+      "zh": "弗林德斯大學商業學教授兼研究部負責人",
+      "en": "Professor of Commerce and Head of Research Section, Flinders University"
+    },
+    {
+      "teacher": "_adriancheung",
+      "order": 3,
+      "zh_time": "2015 – 2018",
+      "en_time": "2015 – 2018",
+      "zh": "科廷大學金融與銀行學副教授",
+      "en": "Associate Professor in Finance and Banking, Curtin University"
+    },
+    {
+      "teacher": "_adriancheung",
+      "order": 4,
+      "zh_time": "2011 – 2014",
+      "en_time": "2011 – 2014",
+      "zh": "科廷大學金融與銀行高級講師",
+      "en": "Senior Lecturer in Finance and Banking, Curtin University"
+    },
+    {
+      "teacher": "_adriancheung",
+      "order": 5,
+      "zh_time": "2004 – 2011",
+      "en_time": "2004 – 2011",
+      "zh": "格里菲斯大學金融與經濟學講師",
+      "en": "Lecturer in Finance and Economics, Griffith University"
+    },
+    {
+      "teacher": "_adriancheung",
+      "order": 6,
+      "zh_time": "1991 – 2002",
+      "en_time": "1991 – 2002",
+      "zh": "嶺南大學會計與金融學助理講師",
+      "en": "Assistant Lecturer/Lecturer in Accounting and Finance, Lingnan University"
+    },
+    {
+      "teacher": "evakhong",
+      "order": 1,
+      "zh_time": "2013 – 至今",
+      "en_time": "2006 – Present",
+      "zh": "澳門城市大學 副教授 副院長",
+      "en": "Associate Professor, City University of Macau, Macau (renamed of Asia International Open University, Macau.)"
+    },
+    {
+      "teacher": "evakhong",
+      "order": 2,
+      "zh_time": "2006/09 – 至今",
+      "en_time": "2004 – Present",
+      "zh": "澳門城市大學副教授",
+      "en": "Visiting Professor, Instituto Superior de Ciencias do Trabalho e da Empresa, Portugal."
+    },
+    {
+      "teacher": "evakhong",
+      "order": 3,
+      "zh_time": "1989/09 – 2006/08",
+      "en_time": "1989 – 2006",
+      "zh": "澳門大學助理教授",
+      "en": "Assistant Professor, Faculty of Business Administration, University of Macau, Macau."
+    },
+    {
+      "teacher": "evakhong",
+      "order": 4,
+      "zh_time": "1982/08 – 1989/09",
+      "en_time": "1984 – 1989",
+      "zh": "香港嶺南大學助理教授",
+      "en": "Lecturer, Department of Management, Lingnan College, Hong Kong"
+    },
+    {
+      "teacher": "evakhong",
+      "order": 5,
+      "zh_time": "",
+      "en_time": "1982 – 1984",
+      "zh": "",
+      "en": "Assistant Lecturer, Department of Management, Lingnan College, Hong Kong"
+    },
+    {
+      "teacher": "evakhong",
+      "order": 6,
+      "zh_time": "",
+      "en_time": "1978 – 1979",
+      "zh": "",
+      "en": "Teaching Assistant, Department of Management, Lingnan College, Hong Kong"
+    },
+    {
+      "teacher": "arman",
+      "order": 1,
+      "zh_time": "2026 – 至今",
+      "en_time": "2026 – Present",
+      "zh": "澳門城市大學金融學院金融學教授",
+      "en": "Professor of Finance, City University of Macau, China"
+    },
+    {
+      "teacher": "arman",
+      "order": 2,
+      "zh_time": "2018 – 2025",
+      "en_time": "2018 – 2025",
+      "zh": "卡迪夫大學金融與投資學講座教授",
+      "en": "Chair of Finance and Investment, Cardiff University, UK"
+    },
+    {
+      "teacher": "arman",
+      "order": 3,
+      "zh_time": "2016 – 2018",
+      "en_time": "2016 – 2018",
+      "zh": "愛丁堡大學金融學副教授",
+      "en": "Associate Professor of Finance, University of Edinburgh, UK"
+    },
+    {
+      "teacher": "arman",
+      "order": 4,
+      "zh_time": "2013 – 2016",
+      "en_time": "2013 – 2016",
+      "zh": "愛丁堡大學金融學助理教授",
+      "en": "Assistant Professor of Finance, University of Edinburgh, UK"
+    },
+    {
+      "teacher": "arman",
+      "order": 5,
+      "zh_time": "2012 – 2013",
+      "en_time": "2012 – 2013",
+      "zh": "愛丁堡大學金融學博士後研究員",
+      "en": "Postdoctoral Fellow in Finance, University of Edinburgh, UK"
+    },
+    {
+      "teacher": "arman",
+      "order": 6,
+      "zh_time": "2025 – 2026",
+      "en_time": "2025 – Present",
+      "zh": "劍橋大學賈吉商學院訪問學者",
+      "en": "Visiting Scholar (host: Prof. Raghu Rau), Cambridge Judge Business School"
+    },
+    {
+      "teacher": "arman",
+      "order": 7,
+      "zh_time": "2025 – 至今",
+      "en_time": "2025 – Present",
+      "zh": "卡迪夫大學金融學名譽教授",
+      "en": "Honorary Professor of Finance, Cardiff University, UK"
+    },
+    {
+      "teacher": "arman",
+      "order": 8,
+      "zh_time": "2024",
+      "en_time": "2024",
+      "zh": "哈佛商学院訪問學者",
+      "en": "Visiting Scholar (host: Prof. Lauren Cohen), Harvard Business School"
+    },
+    {
+      "teacher": "arman",
+      "order": 9,
+      "zh_time": "2024",
+      "en_time": "2024",
+      "zh": "阿聯酋沙迦美國大學訪問教授",
+      "en": "Visiting Professor, American University of Sharjah, UAE"
+    },
+    {
+      "teacher": "arman",
+      "order": 10,
+      "zh_time": "2023",
+      "en_time": "2023",
+      "zh": "坎特伯雷大學厄斯金研究員 (Erskine Fellow)",
+      "en": "Erskine Fellow (host: Prof. Jedrzej Bialkowski), University of Canterbury, NZ"
+    },
+    {
+      "teacher": "arman",
+      "order": 11,
+      "zh_time": "2018",
+      "en_time": "2018",
+      "zh": "日本政策投资银行下村研究員 (Shimomura Fellow)",
+      "en": "Shimomura Fellow (host: Prof. Jun-ichi Nakamura), Development Bank of Japan"
+    },
+    {
+      "teacher": "arman",
+      "order": 12,
+      "zh_time": "2013 – 2016",
+      "en_time": "2013 – 2016",
+      "zh": "倫敦大學學院研究員",
+      "en": "Research Fellow (host: Prof. David Tuckett), University College London"
+    },
+    {
+      "teacher": "arman",
+      "order": 13,
+      "zh_time": "2010 – 2011",
+      "en_time": "2010 – 2011",
+      "zh": "曼徹斯特大學聯盟商學院訪問博士研究員",
+      "en": "Visiting Doctoral Fellow (full-time), Alliance Manchester Business School"
+    },
+    {
+      "teacher": "arman",
+      "order": 14,
+      "zh_time": "2008 – 2012",
+      "en_time": "2008 – 2012",
+      "zh": "倫敦大學學院訪問博士研究員 (兼任)",
+      "en": "Visiting Doctoral Fellow (part-time), University College London"
+    },
+    {
+      "teacher": "yhzhou",
+      "order": 1,
+      "zh_time": "2022/08 – 至今",
+      "en_time": "2022/08 – Present",
+      "zh": "澳門城市大學金融学院，教授",
+      "en": "Professor, City University of Macau"
+    },
+    {
+      "teacher": "yhzhou",
+      "order": 2,
+      "zh_time": "2010/09 – 2022/07",
+      "en_time": "2010/09 – 2022/07",
+      "zh": "暨南大學經濟學院，副教授",
+      "en": "Associate Professor, Jinan University"
+    },
+    {
+      "teacher": "yhzhou",
+      "order": 3,
+      "zh_time": "2007/07 – 2010/07",
+      "en_time": "2007/07 – 2010/07",
+      "zh": "廣東工業大學管理學院，講師",
+      "en": "Lecturer, Guangdong University of Technology"
+    },
+    {
+      "teacher": "yhzhou",
+      "order": 4,
+      "zh_time": "2018/10 – 2019/10",
+      "en_time": "2018/10 – 2019/10",
+      "zh": "澳大利亞弗林德斯大學，訪問學者",
+      "en": "Visiting Scholar, Flinders University (Australia)"
+    },
+    {
+      "teacher": "yhzhou",
+      "order": 5,
+      "zh_time": "2014/08 – 2015/08",
+      "en_time": "2014/08 – 2015/08",
+      "zh": "美國阿拉巴馬大學，訪問學者",
+      "en": "Visiting Scholar, The University of Alabama (USA)"
+    },
+    {
+      "teacher": "tingyang",
+      "order": 1,
+      "zh_time": "2023 – 至今",
+      "en_time": "2023 – Present",
+      "zh": "澳門城市大學金融學院副教授",
+      "en": "associate professor of finance, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "tingyang",
+      "order": 2,
+      "zh_time": "2004 – 2023",
+      "en_time": "2004 – 2023",
+      "zh": "新西蘭奧克蘭理工大學金融系高級講師",
+      "en": "senior lecturer, Department of Finance, Auckland University of Technology"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 1,
+      "zh_time": "2024/08 – 至今",
+      "en_time": "2024/08 – Present",
+      "zh": "澳門城市大學(CityU Macau), 應用經濟學教授",
+      "en": "Professor, City University of Macau (CityU Macau)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 2,
+      "zh_time": "2014/04 – 至今",
+      "en_time": "2014/04 – Present",
+      "zh": "奧地利經濟研究所 (WIFO), 研究員",
+      "en": "Research Associate, Austrian Institute of Economic Research (WIFO)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 3,
+      "zh_time": "2019/09 – 2024/06",
+      "en_time": "2019/09 – 2024/06",
+      "zh": "上海大學MBA中心, 兼職教授",
+      "en": "Professor (part-time), Shanghai University, MBA Center (Shanghai University, MBA Centre)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 4,
+      "zh_time": "2020/09 – 2023/08",
+      "en_time": "2020/09 – 2023/08",
+      "zh": "上海海洋大學, 教授",
+      "en": "Professor, Shanghai Ocean University (SHOU)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 5,
+      "zh_time": "2016/09 – 2018/08",
+      "en_time": "2016/09 – 2018/08",
+      "zh": "英國/馬來西亞雷丁大學, 高級副教授",
+      "en": "Senior Associate Professor, University of Reading UK / Malaysia (UoRM)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 6,
+      "zh_time": "2015/04 – 2016/07",
+      "en_time": "2015/04 – 2016/07",
+      "zh": "新加坡社會科學大學, 高級副教授",
+      "en": "Senior Associate Professor, Singapore University of Social Sciences (SUSS)"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 7,
+      "zh_time": "2014/04 – 2015/03",
+      "en_time": "2014/04 – 2015/03",
+      "zh": "奧地利經濟研究院（WIFO）, 項目性（勞務合約）僱傭",
+      "en": "Project-based (service contract) employment relationship with WIFO"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 8,
+      "zh_time": "2013/04 – 2014/03",
+      "en_time": "2013/04 – 2014/03",
+      "zh": "奧地利經濟研究院（WIFO）, 高級經濟學家",
+      "en": "Senior Economist, WIFO"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 9,
+      "zh_time": "2012/04 – 2013/03",
+      "en_time": "2012/04 – 2013/03",
+      "zh": "德國萊布納大學, 教授",
+      "en": "Professor, Leuphana University, Germany"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 10,
+      "zh_time": "2011/01 – 2012/03",
+      "en_time": "2011/01 – 2012/03",
+      "zh": "維也納經濟大學, 副教授",
+      "en": "Associate Professor, WU"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 11,
+      "zh_time": "2009/01 – 2010/12",
+      "en_time": "2009/01 – 2010/12",
+      "zh": "奧地利科學基金國際稅收協調專項研究項目負責人",
+      "en": "Project Lead, Special Research Project (International Tax Coordination), Austrian Science Fund"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 12,
+      "zh_time": "2005/10 – 2008/12",
+      "en_time": "2005/10 – 2008/12",
+      "zh": "維也納經濟大學(WU), 助理教授",
+      "en": "Assistant Professor, WU"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 13,
+      "zh_time": "2004/10 – 2005/09",
+      "en_time": "2004/10 – 2005/09",
+      "zh": "奧地利中央銀行經濟分析部, 經濟學家",
+      "en": "Economist, Economic Analysis Division, Austrian Central Bank"
+    },
+    {
+      "teacher": "markusleibrecht",
+      "order": 14,
+      "zh_time": "1999/08 – 2004/09",
+      "en_time": "1999/08 – 2004/09",
+      "zh": "維也納經濟大學(WU), 助理教授 (博士前)，承擔相應教學職責",
+      "en": "Assistant Professor (prae-PhD) with teaching responsibilities of an Assistant Professor, WU"
+    },
+    {
+      "teacher": "dqlin",
+      "order": 1,
+      "zh_time": "2024/09 – 至今",
+      "en_time": "2024/09",
+      "zh": "澳門城市大學金融學院副教授",
+      "en": "City University of Macau Associate Professor"
+    },
+    {
+      "teacher": "dqlin",
+      "order": 2,
+      "zh_time": "2017",
+      "en_time": "2017/09",
+      "zh": "年09月2024年09月 澳門城市大學金融學院助理教授",
+      "en": "City University of Macau Assistant Professor"
+    },
+    {
+      "teacher": "dqlin",
+      "order": 3,
+      "zh_time": "2014/11 – 2017/08",
+      "en_time": "2014/11 – 2017/08",
+      "zh": "澳門城市大學商學院高級講師",
+      "en": "City University of Macau Senior Lecturer"
+    },
+    {
+      "teacher": "dqlin",
+      "order": 4,
+      "zh_time": "2016/06 – 至今",
+      "en_time": "2016/06",
+      "zh": "金融理論探索 外審專家",
+      "en": "Exploration of Financial Theory Reviewer"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 1,
+      "zh_time": "2025/01 – 至今",
+      "en_time": "2025/01 – Present",
+      "zh": "澳門城市大學金融學院 教授",
+      "en": "Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 2,
+      "zh_time": "2018/11 – 2024/12",
+      "en_time": "2018/11 – 2024/12",
+      "zh": "廣州大學公共管理學院 副教授",
+      "en": "Associate Professor, Public Administration School, Guangzhou University"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 3,
+      "zh_time": "2013/01 – 2018/10",
+      "en_time": "2013/01 – 2018/10",
+      "zh": "西南民族大學經濟學院 講師，副教授",
+      "en": "Assistant/Associate Professor, School of Economics, Southwest Minzu University"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 4,
+      "zh_time": "2021/08 – 2022/08",
+      "en_time": "2021/08 – 2022/08",
+      "zh": "北佛羅里達大學 (University of North Florida) 國家公派",
+      "en": "University of North Florida (State-funded Program)"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 5,
+      "zh_time": "2020/09 – 2021/08",
+      "en_time": "2020/09 – 2021/08",
+      "zh": "中山大學 訪問學者",
+      "en": "Sun Yat-sen University"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 6,
+      "zh_time": "2011/08 – 2012/08",
+      "en_time": "2011/08 – 2012/08",
+      "zh": "北佛羅里達大學 (University of North Florida) 國家公派",
+      "en": "University of North Florida (State-funded Program)"
+    },
+    {
+      "teacher": "qiangli",
+      "order": 7,
+      "zh_time": "2009/08 – 2010/08",
+      "en_time": "2009/08 – 2010/08",
+      "zh": "北京大學光華管理學院 訪問學者",
+      "en": "Guanghua School of Management, Peking University"
+    },
+    {
+      "teacher": "wpli",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學金融學院副教授",
+      "en": "Associate Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "wpli",
+      "order": 2,
+      "zh_time": "2020 – 2024",
+      "en_time": "2020 – 2024",
+      "zh": "中山大學國際金融學院助理教授",
+      "en": "Assistant Professor, International School of Business & Finance, Sun Yat-sen University"
+    },
+    {
+      "teacher": "wpli",
+      "order": 3,
+      "zh_time": "2020 – 2020",
+      "en_time": "2020 – 2020",
+      "zh": "伊利諾理工學院斯圖爾特商學院訪問學者",
+      "en": "Visiting research scholar, Stuart School of Business, Illinois Institute of Technology"
+    },
+    {
+      "teacher": "wpli",
+      "order": 4,
+      "zh_time": "2016 – 2017",
+      "en_time": "2016 – 2017",
+      "zh": "香港理工大學會計與金融學院研究助理",
+      "en": "Research Assistant, School of Accounting and Finance, Hong Kong Polytechnic University"
+    },
+    {
+      "teacher": "feisu",
+      "order": 1,
+      "zh_time": "2025 – 至今",
+      "en_time": "2025 – Present",
+      "zh": "澳門城市大學, 金融學院副教授",
+      "en": "Associate Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "feisu",
+      "order": 2,
+      "zh_time": "2022 – 2025",
+      "en_time": "2022 – 2025",
+      "zh": "南京航空航天大學, 經濟與管理學院副教授",
+      "en": "Associate Professor (Tenured), College of Economics and Management, Nanjing University of Aeronautics and Astronautics"
+    },
+    {
+      "teacher": "feisu",
+      "order": 3,
+      "zh_time": "2019 – 2022",
+      "en_time": "2019 – 2022",
+      "zh": "南京航空航天大學, 經濟與管理學院講師",
+      "en": "Lecturer, College of Economics and Management, Nanjing University of Aeronautics and Astronautics"
+    },
+    {
+      "teacher": "ygwang",
+      "order": 1,
+      "zh_time": "2016/09 – 2021/08",
+      "en_time": "2016/09 – 2021/08",
+      "zh": "Associate Professor 副教授\nSchool of Business, City University of Macau \n澳门城市大学金融学院",
+      "en": "Associate Professor\nSchool of Business, City University of Macau"
+    },
+    {
+      "teacher": "ygwang",
+      "order": 2,
+      "zh_time": "2014/01 – 2015/12",
+      "en_time": "2014/01 – 2015/12",
+      "zh": "(Chair) Professor in finance特聘教授 \nDepartment of Economics and Management, Yuncheng University\n运城学院经济管理系",
+      "en": "(Chair) Professor in finance \nDepartment of Economics and Management, Yuncheng University"
+    },
+    {
+      "teacher": "ygwang",
+      "order": 3,
+      "zh_time": "2006/01 – 2013/12",
+      "en_time": "2006/01 – 2013/12",
+      "zh": "Professor in finance金融学教授 \nSchool of finance, Nanjing University of Finance and Economics\n南京财经大学金融学院",
+      "en": "Professor in finance \nSchool of Finance, Nanjing University of Finance and Economics"
+    },
+    {
+      "teacher": "boyu",
+      "order": 1,
+      "zh_time": "2026 – 至今",
+      "en_time": "2026 – Present",
+      "zh": "澳門城市大學 副教授",
+      "en": "Associate Professor in Finance, City University of Macau"
+    },
+    {
+      "teacher": "boyu",
+      "order": 2,
+      "zh_time": "2021 – 2026",
+      "en_time": "2021 – 2026",
+      "zh": "澳門城市大學 助理教授",
+      "en": "Assistant Professor in Finance, City University of Macau"
+    },
+    {
+      "teacher": "xzchen",
+      "order": 1,
+      "zh_time": "2024/08 – 至今",
+      "en_time": "2024/08 – Present",
+      "zh": "助理教授，澳門城市大學金融學院",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau."
+    },
+    {
+      "teacher": "xzchen",
+      "order": 2,
+      "zh_time": "2022/09 – 2024/01",
+      "en_time": "2022/09 – 2024/01",
+      "zh": "訪問研究員，西南財經大學經濟學院",
+      "en": "Visiting Research Fellow, School of Economics, Southwestern University of Finance and Economics."
+    },
+    {
+      "teacher": "xzchen",
+      "order": 3,
+      "zh_time": "2018/04 – 2022/09",
+      "en_time": "2018/04 – 2022/09",
+      "zh": "副教授，碩士生導師，江西財經大學經濟學院",
+      "en": "Associate Professor, School of Economics, Jiangxi University of Finance and Economics."
+    },
+    {
+      "teacher": "xzchen",
+      "order": 4,
+      "zh_time": "2013/10 – 2018/03",
+      "en_time": "2013/10 – 2018/03",
+      "zh": "特聘副研究員，四川大學經濟學院",
+      "en": "Associate Research Fellow, School of Economics, Sichuan University."
+    },
+    {
+      "teacher": "xzchen",
+      "order": 5,
+      "zh_time": "2013/03 – 2013/08",
+      "en_time": "2013/03 – 2013/07",
+      "zh": "博士後訪問研究員，英國華威大學經濟系",
+      "en": "Post-Doc Visiting Research Fellow, Department of Economics, University of Warwick."
+    },
+    {
+      "teacher": "xzchen",
+      "order": 6,
+      "zh_time": "2006/09 – 2012/12",
+      "en_time": "2006/09 – 2012/12",
+      "zh": "經濟學助教，英國華威大學經濟系",
+      "en": "Teaching Assistant, Department of Economics, University of Warwick."
+    },
+    {
+      "teacher": "scchow",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學，金融學院，助理教授",
+      "en": "City University of Macau, Faculty of Finance, Assistant Professor"
+    },
+    {
+      "teacher": "scchow",
+      "order": 2,
+      "zh_time": "2022 – 2023",
+      "en_time": "2022 – 2023",
+      "zh": "澳大利亞國立大學，經濟研究學院，副講師",
+      "en": "Australian National University, Research School of Economics, Associate Lecturer"
+    },
+    {
+      "teacher": "scchow",
+      "order": 3,
+      "zh_time": "2016 – 2017",
+      "en_time": "2016 – 2017",
+      "zh": "香港恒生大學，商學院研究所，研究助理",
+      "en": "The Hang Seng University of Hong Kong, Research Institute for Business, Research Assistant"
+    },
+    {
+      "teacher": "scchow",
+      "order": 4,
+      "zh_time": "2015 – 2016",
+      "en_time": "2015 – 2016",
+      "zh": "香港中文大學，數學系，研究助理",
+      "en": "The Chinese University of Hong Kong, Department of Mathematics, Research Assistant"
+    },
+    {
+      "teacher": "cndai",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學 金融學院，助理教授",
+      "en": "City University of Macau, Faculty of Finance, Assistant Professor"
+    },
+    {
+      "teacher": "jyhua",
+      "order": 1,
+      "zh_time": "",
+      "en_time": "2020 – 2023",
+      "zh": "",
+      "en": "Research Assistant, USDA Thriving Agricultural Systems in Urbanized Landscapes \nAdvisor: Dr. H. Allen Klaiber\nProject website: https://portal.nifa.usda.gov/web/crisprojectpages/1019799-thriving-agriculturalsystems-in-urbanized-landscapes.html, https://thrivingag.org/about/project-overview/"
+    },
+    {
+      "teacher": "yujiang",
+      "order": 1,
+      "zh_time": "2023 – 至今",
+      "en_time": "",
+      "zh": "澳門城市大學金融學院 助理教授",
+      "en": ""
+    },
+    {
+      "teacher": "yujiang",
+      "order": 2,
+      "zh_time": "2014 – 2018",
+      "en_time": "",
+      "zh": "北京理工大學珠海學院 講師",
+      "en": ""
+    },
+    {
+      "teacher": "bwjia",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學金融學院助理教授",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "mengli",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學金融學院助理教授",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "mengli",
+      "order": 2,
+      "zh_time": "2018 – 2023",
+      "en_time": "2018 – 2023",
+      "zh": "西南財經大學財政稅務學院副教授",
+      "en": "Associate Professor, School of Public Finance and Taxation, Southwestern University of Finance and Economics"
+    },
+    {
+      "teacher": "mengli",
+      "order": 3,
+      "zh_time": "2017 – 2018",
+      "en_time": "2017 – 2018",
+      "zh": "西南財經大學財政稅務學院助理教授",
+      "en": "Assistant Professor, School of Public Finance and Taxation, Southwestern University of Finance and Economics"
+    },
+    {
+      "teacher": "ypli",
+      "order": 1,
+      "zh_time": "2025 – 至今",
+      "en_time": "2025 – Present",
+      "zh": "澳門城市大學金融學院，助理教授",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "ypli",
+      "order": 2,
+      "zh_time": "2021 – 2025",
+      "en_time": "2021 – 2025",
+      "zh": "中國電子科技大學經濟與管理學院，助理教授",
+      "en": "Assistant Professor, School of Economics and Management, The University of Electronic Science and Technology"
+    },
+    {
+      "teacher": "ypli",
+      "order": 3,
+      "zh_time": "2017 – 2018",
+      "en_time": "2017 – 2018",
+      "zh": "新加坡南洋理工大學社會科學學院，助教與研究助理",
+      "en": "Teaching Assistant & Research Assistant, School of Social Sciences, Nanyang Technological University"
+    },
+    {
+      "teacher": "yunling",
+      "order": 1,
+      "zh_time": "2023/08 – 至今",
+      "en_time": "2023/08 – Present",
+      "zh": "澳門城市大學金融學院助理教授",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "yunling",
+      "order": 2,
+      "zh_time": "2020/06 – 2023/06",
+      "en_time": "2020/06 – 2023/06",
+      "zh": "華南理工大學工商管理學院助理研究員（博士後）",
+      "en": "Assistant Research Fellow (Postdoc), School of Business Administration, South China University of Technology"
+    },
+    {
+      "teacher": "yunling",
+      "order": 3,
+      "zh_time": "2015/03 – 2019/12",
+      "en_time": "2019/03 – 2019/12",
+      "zh": "悉尼大學商學院兼職講師/助教",
+      "en": "Sessional Lecturer/Head Tutor (part time), Business School, University of Sydney"
+    },
+    {
+      "teacher": "cailiu",
+      "order": 1,
+      "zh_time": "2024/08 – 至今",
+      "en_time": "2024/08 – Present",
+      "zh": "澳門城市大學, 金融學院, 助理教授",
+      "en": "City University of Macau, Assistant Professor"
+    },
+    {
+      "teacher": "cailiu",
+      "order": 2,
+      "zh_time": "2019/07 – 2024/07",
+      "en_time": "2019/07 – 2024/06",
+      "zh": "西南財經大學, 金融學院, 副教授",
+      "en": "Southwestern University of Finance and Economics, Associate Professor"
+    },
+    {
+      "teacher": "cailiu",
+      "order": 3,
+      "zh_time": "2019/01 – 2019/07",
+      "en_time": "2019/01 – 2019/07",
+      "zh": "西南財經大學, 金融學院, 講師",
+      "en": "Southwestern University of Finance and Economics, Assistant Professor"
+    },
+    {
+      "teacher": "liulu",
+      "order": 1,
+      "zh_time": "2021 – 至今",
+      "en_time": "2021 – Present",
+      "zh": "澳門城市大學金融學院助理教授",
+      "en": "Assistant Professor of Finance, City University of Macau"
+    },
+    {
+      "teacher": "liulu",
+      "order": 2,
+      "zh_time": "2019 – 2021",
+      "en_time": "2019 – 2021",
+      "zh": "平安集團子公司風險管理部模型主管",
+      "en": "Head of Data & Modeling Team, Modeling Expert, PingAn"
+    },
+    {
+      "teacher": "liulu",
+      "order": 3,
+      "zh_time": "2017 – 2019",
+      "en_time": "2017 – 2019",
+      "zh": "FICO (Fair Isaac Corporation)分析咨詢經理",
+      "en": "Analytical Consulting Manager, FICO (Fair Isaac Corporation)"
+    },
+    {
+      "teacher": "liulu",
+      "order": 4,
+      "zh_time": "2012 – 2014",
+      "en_time": "2012 – 2014",
+      "zh": "美國伊利諾伊大學芝加哥分校經濟學院、商學院兼職講師",
+      "en": "Parttime Instructor, Department of Economics & Department of Finance, University of Illinois at Chicago, USA"
+    },
+    {
+      "teacher": "liulu",
+      "order": 5,
+      "zh_time": "",
+      "en_time": "2007 – 2009",
+      "zh": "",
+      "en": "Parttime Instructor, Department of Economics, University of Illinois at Chicago, USA"
+    },
+    {
+      "teacher": "xcpang",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "2024 – Present",
+      "zh": "澳門城市大學金融學院 助理教授",
+      "en": "Assistant professor in Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 1,
+      "zh_time": "2024/08 – 至今",
+      "en_time": "2024/08 – Present",
+      "zh": "金融系助理教授，金融學院，澳門城市大學",
+      "en": "Assistant Professor of Finance, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 2,
+      "zh_time": "2023 – 2024",
+      "en_time": "2023 – 2024",
+      "zh": "訪問研究學人，亨利商學院，英國雷丁大學",
+      "en": "Visiting Research Fellow, Henley Business School, University of Reading, UK"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 3,
+      "zh_time": "2019 – 2021",
+      "en_time": "2019 – 2021",
+      "zh": "房地產金融助理教授，中國上海商學院",
+      "en": "Assistant Professor of Real Estate Finance, Shanghai Business School, China (Shanghai and Hong Kong)"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 4,
+      "zh_time": "2015 – 2019",
+      "en_time": "2015 – 2019",
+      "zh": "教學及研究助理，亨利商學院，英國雷丁大學",
+      "en": "Teaching and Research Assistant, Henley Business School, University of Reading, UK"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 5,
+      "zh_time": "2009 – 2011",
+      "en_time": "2009 – 2011",
+      "zh": "研究副經理，旭日企業，香港",
+      "en": "Assistant Research Manager, Glorious Sun Enterprises Limited, Hong Kong"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 6,
+      "zh_time": "2007 – 2009",
+      "en_time": "2007 – 2009",
+      "zh": "研究員，Enright Scott and Associates，香港",
+      "en": "Researcher, Enright Scott and Associates"
+    },
+    {
+      "teacher": "lmtong",
+      "order": 7,
+      "zh_time": "2005 – 2007",
+      "en_time": "2005 – 2007",
+      "zh": "高級研究分析員 / 研究分析員, ISI CEIC, 香港",
+      "en": "Senior Research Analyst / Research Analyst, ISI CEIC, Hong Kong"
+    },
+    {
+      "teacher": "jqxi",
+      "order": 1,
+      "zh_time": "2024",
+      "en_time": "2024",
+      "zh": "澳門城市大學, 金融學院助理教授",
+      "en": "Assistant Professor of Finance, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "jqxi",
+      "order": 2,
+      "zh_time": "2015 – 2023",
+      "en_time": "2015 – 2023",
+      "zh": "北師港浸大, 講師",
+      "en": "Lecturer, United International College (UIC), Beijing Normal University-Hong Kong Baptist University (BNU-HKBU)"
+    },
+    {
+      "teacher": "lfxue",
+      "order": 1,
+      "zh_time": "2021 – 至今",
+      "en_time": "2021 – Present",
+      "zh": "澳門城市大學金融學院 助理教授",
+      "en": "Assistant Professor of Finance, City University of Macau"
+    },
+    {
+      "teacher": "lfxue",
+      "order": 2,
+      "zh_time": "2019 – 2020",
+      "en_time": "2019 – 2020",
+      "zh": "美國北佐治亞大學商學院 限期教師",
+      "en": "Limited-term Faculty in Finance, University of North Georgia"
+    },
+    {
+      "teacher": "fzwang",
+      "order": 1,
+      "zh_time": "2024 – 至今",
+      "en_time": "",
+      "zh": "澳門城市大學 金融學院 助理教授",
+      "en": ""
+    },
+    {
+      "teacher": "luwang",
+      "order": 1,
+      "zh_time": "2026 – 至今",
+      "en_time": "2026 – Present",
+      "zh": "助理教授金融學院 澳門城市大學",
+      "en": "Assistant Professor, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "luwang",
+      "order": 2,
+      "zh_time": "2022 – 2025",
+      "en_time": "2022 – 2025",
+      "zh": "講師 會計學院 浙江財經大學",
+      "en": "Lecturer, School of Accounting, Zhejiang University of Finance and Economics"
+    },
+    {
+      "teacher": "fanyang",
+      "order": 1,
+      "zh_time": "",
+      "en_time": "2024 – Present",
+      "zh": "",
+      "en": "Assistant Professor of Finance, City University of Macau"
+    },
+    {
+      "teacher": "julianzhang",
+      "order": 1,
+      "zh_time": "2023 – 至今",
+      "en_time": "2023 – Present",
+      "zh": "澳門城市大學",
+      "en": "Assistant Professor, City University of Macau"
+    },
+    {
+      "teacher": "julianzhang",
+      "order": 2,
+      "zh_time": "2017 – 2023",
+      "en_time": "2017 – 2023",
+      "zh": "美國 Loyola Marymount University 商學院金融系助理教授",
+      "en": "Assistant Professor, Loyola Marymount University"
+    },
+    {
+      "teacher": "julianzhang",
+      "order": 3,
+      "zh_time": "2017",
+      "en_time": "2017",
+      "zh": "美國猶他大學商學院兼職講師",
+      "en": "Adjunct Lecturer, The University of Utah"
+    },
+    {
+      "teacher": "kellyliang",
+      "order": 1,
+      "zh_time": "2022/08 – 至今",
+      "en_time": "2022/08 – Present",
+      "zh": "澳門城市大學金融學院 講師",
+      "en": "Lecturer, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "cwsou",
+      "order": 1,
+      "zh_time": "2022/08 – 至今",
+      "en_time": "2022/08 – Present",
+      "zh": "澳門城市大學金融學院 講師",
+      "en": "Lecturer, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "cwsou",
+      "order": 2,
+      "zh_time": "2021/08 – 2022/06",
+      "en_time": "2021/08 – 2022/06",
+      "zh": "澳門城市大學金融學院 兼職講師",
+      "en": "Part-time lecturer, Faculty of Finance, City University of Macau"
+    },
+    {
+      "teacher": "cwsou",
+      "order": 3,
+      "zh_time": "2014/08 – 2014/12",
+      "en_time": "2014/08 – 2014/12",
+      "zh": "澳門旅遊學院 兼職講師",
+      "en": "Part-time Instructor, Macao Institutes for Tourism Studies"
+    }
+  ]
+}

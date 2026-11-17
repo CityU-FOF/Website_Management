@@ -218,7 +218,7 @@ def items(record):
 
 
 def strip_bullet(text):
-    return re.sub(r'^\s*(?:(?:[•·●▪*]|[.])\s*|\[\d+\]\s*|\d+[.)、]\s*)', '', clean(text))
+    return re.sub(r'^\s*(?:(?:[•·●▪*]|[.])\s*|\[\d+\]\s*|\d{1,3}[.)、]\s*)', '', clean(text))
 
 
 def citation_segments(text):
