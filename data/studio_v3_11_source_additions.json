@@ -1,0 +1,47 @@
+{
+  "captured_on": "2026-11-18",
+  "arman_gallery": {
+    "zh": {
+      "url": "https://fof.cityu.edu.mo/arman",
+      "page_sha256": "ec45f4da1105a0677339ea05295401e9979df4d13c12d8d18659d6d4f9529906",
+      "photo_urls": [
+        "https://fof.cityu.edu.mo/uploads_thumb/page/3b69f40b52591366f6f9929ce339ced5_1000X1000.png",
+        "https://fof.cityu.edu.mo/uploads_thumb/page/96c2af0b99281aa0fb94e1ce75c86d26_1000X1000.png",
+        "https://fof.cityu.edu.mo/uploads_thumb/page/61dab94eb87fefcfa4a0f8d09de8e131_1000X1000.jpg"
+      ]
+    },
+    "en": {
+      "url": "https://fof.cityu.edu.mo/en/arman",
+      "page_sha256": "af1112d1e9fc82a7cba4d76e890ef397fd1bdd36a538505f1a3d0b529b417c6b",
+      "photo_urls": [
+        "https://fof.cityu.edu.mo/en/uploads_thumb/page/d0e616954348d9acb1046ba235682c95_1000X1000.png",
+        "https://fof.cityu.edu.mo/en/uploads_thumb/page/333d0f1d15470990ff54a01edcc468f8_1000X1000.png",
+        "https://fof.cityu.edu.mo/en/uploads_thumb/page/685d4d730b2df369ea69ddb49d796d67_1000X1000.jpg"
+      ]
+    }
+  },
+  "highlight_sources": {
+    "_adriancheung": "https://fof.cityu.edu.mo/adriancheung",
+    "cclee": "https://fof.cityu.edu.mo/cclee"
+  },
+  "gallery_photo_checks": [
+    {
+      "url": "https://fof.cityu.edu.mo/uploads_thumb/page/3b69f40b52591366f6f9929ce339ced5_1000X1000.png",
+      "status": 200,
+      "content_type": "image/png",
+      "sha256": "48ace556bf763e0e0cd6fcb68fe80490048f83511675ed3635c28ae5ab860503"
+    },
+    {
+      "url": "https://fof.cityu.edu.mo/uploads_thumb/page/96c2af0b99281aa0fb94e1ce75c86d26_1000X1000.png",
+      "status": 200,
+      "content_type": "image/png",
+      "sha256": "3562e08b1a2f559b5e6715f6770959651916a10765ce0922c4fa3caa0b3abe6e"
+    },
+    {
+      "url": "https://fof.cityu.edu.mo/uploads_thumb/page/61dab94eb87fefcfa4a0f8d09de8e131_1000X1000.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "sha256": "2f5a031e6ba377731a07668870eb30162708007e2cd0e89a9cf8c8d9cc843779"
+    }
+  ]
+}

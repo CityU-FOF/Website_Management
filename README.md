@@ -1,16 +1,26 @@
 # 金融學院教師資料整合
 
-已按澳門城市大學金融學院[全職教師名單](https://fof.cityu.edu.mo/faculty)，把 **43 位老師、86 個中英文個人頁**整合至你上載的 FOF Profile Studio 3.10 備份格式。資料擷取日期：2026-11-17。
+已按澳門城市大學金融學院[全職教師名單](https://fof.cityu.edu.mo/faculty)，把 **43 位老師、86 個中英文個人頁**整合至你上載的 FOF Profile Studio 備份格式。主要資料擷取日期：2026-11-17；生成器 3.11 及 Arman 教授三張相片更新日期：2026-11-18。
 
 ## 下載及使用
 
-1. 下載 [FOF_Profile_Backup_All_Faculty_2026-11-17.json](FOF_Profile_Backup_All_Faculty_2026-11-17.json)。
-2. 開啟你原有的 `FOF_Profile_Studio_v3_10.html`，按「還原JSON備份」，選擇新 JSON。
-3. 在「老師」及語言選單選取個人頁，即可預覽或下載代碼。
+1. 下載 [Studio 3.11 完整套件](FOF_Profile_Studio_v3_11_Package_2026-11-18.zip)並解壓。亦可分別下載[新版 HTML](FOF_Profile_Studio_v3_11.html)及[新版 JSON](FOF_Profile_Backup_All_Faculty_2026-11-18.json)。
+2. 開啟 `FOF_Profile_Studio_v3_11.html`，按「還原JSON備份」，選擇 `FOF_Profile_Backup_All_Faculty_2026-11-18.json`。
+3. 在「老師」及語言選單選取個人頁，即可編輯、預覽、確認資料或下載代碼。
 
-亦可直接下載 [全部老師中英文代碼 ZIP](FOF_Profile_Codes_All_Faculty_2026-11-17.zip)，內含 **86 份**可貼入學院後台正文原始碼模式的 `.txt` 代碼，以及匯出說明。
+亦可直接下載 [全部老師中英文代碼 ZIP](FOF_Profile_Codes_All_Faculty_2026-11-18.zip)，內含 **86 份**可貼入學院後台正文原始碼模式的 `.txt` 代碼，以及匯出說明。
 
-這份 JSON 包含 43 筆教師資料、1,025 筆內容明細、696 筆研究成果及 7 項共用設定。研究成果包括論文、工作論文、會議成果、專著及書籍章節。
+這份 JSON 包含 43 筆教師資料、1,054 筆內容明細、696 筆研究成果及 7 項共用設定。研究成果包括論文、工作論文、會議成果、專著及書籍章節。
+
+## Studio 3.11 新功能
+
+- **選填亮點標籤**：中文／英文各自填寫，每行一個，顯示在老師側欄。已按官方簡介為張偉光及李建強填入全球前 2% 頂尖科學家標籤。
+- **日期與內容兩欄**：研究項目、學術服務與指導、獎項及媒體報道均使用左日期／右內容；有日期的原文已抽出至時間欄。未寫日期留空，所有項目保留原排序，供人手調整。
+- **媒體報道**：新增可供任何老師使用的版塊，已將 Arman 教授原有 30 項報道拆成逐項可維護的中英紀錄。
+- **相片輪播**：相片網址每行一個；單張維持靜態，多張自動輪播，提供上一張、下一張、播放／暫停，並尊重減少動態效果設定。已填入 Arman 原頁的三張相片。
+- **每位老師獨立核對**：提供「編輯資料」「確認資料」及全體老師進度表。提示列明版塊、項次及缺欄／中英日期、數字或項目數差異；確認後該老師提示隱藏，再修改會自動變回編輯中。確認進度跟 JSON／Excel 一起保存，交接時請傳最新備份。
+
+詳見[新版使用說明](STUDIO_V3_11.md)、[資料遷移紀錄](data/studio_v3_11_migration.json)及[功能驗證](data/studio_v3_11_validation.json)。3.10 原始檔及 2026-11-17 備份保留供回查；新版媒體報道版塊請使用 3.11 生成器。
 
 ## 論文分欄及經歷日期
 
@@ -55,3 +65,16 @@ CHROMIUM_PATH=/usr/bin/chromium .venv/bin/python scripts/verify_integration.py
 ```
 
 瀏覽器驗證需要已安裝的 Chromium，可透過 `CHROMIUM_PATH` 指定。`--search` 使用已保存的資料，不會發送網絡查詢；如需另外查詢 Crossref，可用 `scripts/fetch_bibliography_metadata.py`，結果暫存於不提交的 `work/`。來源快照及配對表保留原站矛盾，不代表老師已確認每項資料。
+
+## 重建 Studio 3.11
+
+在前述依賴及 Chromium 已安裝的環境執行：
+
+```sh
+.venv/bin/python scripts/build_studio_v3_11.py
+.venv/bin/python scripts/migrate_studio_v3_11.py
+CHROMIUM_PATH=/usr/bin/chromium .venv/bin/python scripts/verify_studio_v3_11.py
+.venv/bin/python scripts/package_studio_v3_11.py
+```
+
+新版仍為離線單檔 HTML；功能原始碼在 `scripts/studio_v3_11_features.js`，由建置程式內嵌。已有來源快照可離線重建資料；功能測試會產生 86 份代碼 ZIP。

@@ -1,0 +1,21 @@
+{
+  "studio_version": "3.11",
+  "teachers": 43,
+  "generated_bilingual_pages": 86,
+  "media_rows": 30,
+  "gallery_photos": 3,
+  "dates_and_undated_items_keep_source_order": true,
+  "original_research_and_career_rows_preserved": true,
+  "optional_bilingual_highlights": true,
+  "review_confirmation_and_edit_invalidation": true,
+  "specific_bilingual_diagnostics": true,
+  "review_survives_json_restore_and_reload": true,
+  "gallery_controls_autoplay_and_reduced_motion": true,
+  "single_photo_static_multi_photo_slideshow": true,
+  "slideshow_independent_of_section_navigation": true,
+  "json_and_xlsx_roundtrip": true,
+  "batch_zip_code_files": 86,
+  "local_storage_saved": true,
+  "mobile_no_horizontal_overflow": true,
+  "runtime_errors": []
+}
