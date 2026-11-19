@@ -2,8 +2,9 @@
 const timelineModules=['研究項目','學術服務與指導','獎項','媒體報道'];
 const reviewFields=new Set(['資料狀態','核對指紋','確認時間','最後編輯時間']);
 const FEATURE_CSS=`
-#fof-faculty-profile .fp-highlights{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 0;padding:0;list-style:none;}
-#fof-faculty-profile .fp-highlight{display:inline-block;padding:5px 10px;border:1px solid #b18b45;border-radius:5px;background:#faf5e9;color:#70521e;font-size:12px;font-weight:600;line-height:1.6;}
+#fof-faculty-profile .fp-recognition{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;}
+#fof-faculty-profile .fp-recognition .fp-highlights{display:flex;flex-wrap:wrap;gap:7px;max-width:100%;margin:0;padding:0;list-style:none;}
+#fof-faculty-profile .fp-recognition .fp-highlight{display:block;max-width:100%;margin:0;padding:5px 10px;border:1px solid #b5822b;border-inline-start:3px solid #b5822b;border-radius:6px;background:#f8e5b4;color:#543604;font-size:13px;font-weight:700;line-height:1.5;overflow-wrap:anywhere;}
 #fof-faculty-profile .fp-dated-list{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px 18px;}
 #fof-faculty-profile .fp-dated-list .fp-entry-body{min-width:0;overflow-wrap:anywhere;}
 #fof-faculty-profile .fp-gallery{margin-bottom:18px;}
@@ -39,6 +40,13 @@ function photoInputs(p){return txt(p['相片網址']).split(/\r?\n/).map(txt).fi
 function photoURLs(p){return [...new Set(photoInputs(p).map(web).filter(Boolean))];}
 function tagValues(p,lang){return txt(p[lang==='en'?'亮點標籤（英文）':'亮點標籤']).split(/\r?\n/).map(txt).filter(Boolean);}
 function highlightHTML(p,lang){const tags=tagValues(p,lang);return tags.length?'<ul class="fp-highlights" aria-label="'+(lang==='en'?'Highlights':'榮譽亮點')+'">'+tags.map(t=>'<li class="fp-highlight">'+esc(t)+'</li>').join('')+'</ul>':'';}
+function recognitionHTML(p,mentor,lang){
+ const highlights=highlightHTML(p,lang);
+ const supervisor=mentor&&setting('顯示導師標籤','是')==='是'?'<span class="fp-supervisor-tag">'+esc(mentor)+'</span>':'';
+ if(!highlights)return supervisor?'<div class="fp-supervision">'+supervisor+'</div>':'';
+ // Reuse the profile grid slot shared by the Chinese and English supervisor labels.
+ return '<div class="fp-supervision fp-recognition">'+supervisor+highlights+'</div>';
+}
 function galleryHTML(p,name,lang){
  const photos=photoURLs(p),en=lang==='en';if(!photos.length)return '';
  if(photos.length===1)return '<div class="fp-photo-frame"><img class="fp-portrait" src="'+esc(photos[0])+'" alt="'+esc(name)+'" /></div>';

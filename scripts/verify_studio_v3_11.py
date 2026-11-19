@@ -69,6 +69,31 @@ def main():
                 def norm(v):return ''.join(v.split())
                 assert [norm(el.get_text()) for el in section.select('.fp-entry-body')]==[norm((r.get('內容（英文）') if result['lang']=='en' else r['內容'])+(r.get('補充（英文）','') if result['lang']=='en' else r.get('補充',''))+('Related link ↗' if result['lang']=='en' else '相關連結 ↗')*bool(r.get('連結'))) for r in rows],(result['id'],module,result['lang'])
                 assert len(section.select('.fp-year'))==len(rows)
+        # Check actual positions at the profile-card grid breakpoint where the labels diverged.
+        layout = browser.new_page()
+        layout.route('**/*', lambda route: route.abort())
+        for result in generated:
+            if result['id'] not in {'_adriancheung', 'cclee'}:
+                continue
+            layout.set_content(result['html'], wait_until='domcontentloaded')
+            for width in (320, 390, 550, 640, 1440):
+                layout.set_viewport_size({'width': width, 'height': 900})
+                assert layout.locator('.fp-recognition > .fp-supervisor-tag + .fp-highlights').count() == 1
+                assert layout.evaluate('''() => {
+                  const mentor = document.querySelector('.fp-supervisor-tag').getBoundingClientRect();
+                  const highlight = document.querySelector('.fp-highlight');
+                  const badge = highlight.getBoundingClientRect();
+                  const contact = document.querySelector('.fp-contact').getBoundingClientRect();
+                  const profile = document.querySelector('.fp-profile').getBoundingClientRect();
+                  return badge.height > 0 && Math.abs(badge.x - mentor.x) < 1
+                    && badge.top >= mentor.bottom && badge.top - mentor.bottom <= 10
+                    && badge.bottom < contact.top && badge.right <= profile.right
+                    && getComputedStyle(highlight).backgroundColor === 'rgb(248, 229, 180)';
+                }'''), (result['id'], result['lang'], width)
+            if result['id'] == '_adriancheung':
+                layout.set_viewport_size({'width': 550, 'height': 900})
+                layout.locator('.fp-profile').screenshot(path=str(WORK / f"highlights_{result['lang']}.png"))
+        layout.close()
         # Real UI: specific bilingual conflicts are shown on confirmation and disappear only after acknowledgement.
         page.evaluate('FOFProfileStudio.selectTeacher("arman")');page.locator('#confirmTeacherButton').click()
         assert page.locator('#confirmationDialog').is_visible()
@@ -164,7 +189,8 @@ def main():
         assert not errors,errors
         report={'studio_version':'3.11','teachers':43,'generated_bilingual_pages':len(generated),'media_rows':30,'gallery_photos':3,
                 'dates_and_undated_items_keep_source_order':True,'original_research_and_career_rows_preserved':True,
-                'optional_bilingual_highlights':True,'review_confirmation_and_edit_invalidation':True,'specific_bilingual_diagnostics':True,
+                'optional_bilingual_highlights':True,'bilingual_highlights_aligned_below_supervisor':True,
+                'review_confirmation_and_edit_invalidation':True,'specific_bilingual_diagnostics':True,
                 'review_survives_json_restore_and_reload':True,'gallery_controls_autoplay_and_reduced_motion':True,
                 'single_photo_static_multi_photo_slideshow':True,'slideshow_independent_of_section_navigation':True,
                 'json_and_xlsx_roundtrip':True,'batch_zip_code_files':86,'local_storage_saved':True,'mobile_no_horizontal_overflow':True,'runtime_errors':errors}

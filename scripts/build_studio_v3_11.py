@@ -19,7 +19,7 @@ replace("'時間':en?careerDate(txt(r['時間（英文）'])||r['時間'],'en'):
 replace("list(mod(name)),'fp-extra-'+(++n)","(timelineModules.includes(name)?timelineHTML(mod(name),lang):list(mod(name))),'fp-extra-'+(++n)")
 replace("(web(p['相片網址'])?'':' fp-no-photo')","(photoURLs(p).length?'':' fp-no-photo')")
 replace("(web(p['相片網址'])?'<div class=\"fp-photo-frame\"><img class=\"fp-portrait\" src=\"'+esc(web(p['相片網址']))+'\" alt=\"'+esc(name)+'\" /></div>':'')","galleryHTML(p,name,lang)")
-replace("+(contact?'<div class=\"fp-contact\">'","+highlightHTML(p,lang)+(contact?'<div class=\"fp-contact\">'")
+replace("(mentor&&setting('顯示導師標籤','是')==='是'?'<div class=\"fp-supervision\"><span class=\"fp-supervisor-tag\">'+esc(mentor)+'</span></div>':'')", "recognitionHTML(p,mentor,lang)")
 replace(" if(enableNav&&nav.length)result+=", " if(photoURLs(p).length>1)result+='\\n<script>\\n'+PROFILE_SLIDESHOW+'\\n<\\/script>';\n if(enableNav&&nav.length)result+=")
 features=(ROOT/'scripts/studio_v3_11_features.js').read_text()
 replace("const STORAGE_KEY=",features+"\nconst STORAGE_KEY=")
