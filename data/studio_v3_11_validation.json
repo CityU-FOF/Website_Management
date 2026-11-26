@@ -1,5 +1,5 @@
 {
-  "studio_version": "3.11",
+  "studio_version": "3.11.1",
   "teachers": 43,
   "generated_bilingual_pages": 86,
   "media_rows": 30,
@@ -11,7 +11,8 @@
   "review_confirmation_and_edit_invalidation": true,
   "specific_bilingual_diagnostics": true,
   "review_survives_json_restore_and_reload": true,
-  "gallery_number_links_with_javascript_disabled": true,
+  "gallery_switches_with_javascript_disabled_and_homepage_base": true,
+  "gallery_click_and_keyboard_work_with_two_three_and_four_photos": true,
   "single_photo_static_multi_photo_gallery": true,
   "multi_photo_output_script_free_with_or_without_chapter_links": true,
   "json_and_xlsx_roundtrip": true,

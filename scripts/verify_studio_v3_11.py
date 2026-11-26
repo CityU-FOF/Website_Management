@@ -58,7 +58,7 @@ def main():
             teacher=next(t for t in data['教師資料'] if t['教師ID']==result['id'])
             assert len(soup.select('.fp-paper h4'))==sum(r['教師ID']==result['id'] for r in data['研究成果'])
             assert len(soup.select('.fp-highlight'))==len((teacher.get('亮點標籤（英文）' if result['lang']=='en' else '亮點標籤') or '').splitlines())
-            assert len(soup.select('.fp-slide'))==(3 if result['id']=='arman' else 0)
+            assert len(soup.select('.fp-photo-choice[type="radio"]'))==(3 if result['id']=='arman' else 0)
             assert len(soup.select('.fp-portrait'))==len(teacher['相片網址'].splitlines())
             for section in soup.select('.fp-section'):
                 heading=section.select_one('h3').get_text()
@@ -138,19 +138,32 @@ def main():
             markup=BeautifulSoup(code,'html.parser')
             assert not markup.select('script')
             assert not any(key.lower().startswith('on') for element in markup.find_all(True) for key in element.attrs)
-            assert len(markup.select('.fp-photo-strip img'))==3
+            assert len(markup.select('.fp-gallery img'))==3 and not markup.select('.fp-gallery a,.fp-gallery form')
+            assert len(markup.select('.fp-photo-choice[checked] + .fp-photo-label + .fp-slide'))==1
             assert markup.select_one('.fp-native-nav a[href="#fp-publications"]')
         page.evaluate('FOFProfileStudio.selectTeacher("arman")')
         preview=page.frame_locator('#preview')
-        photo_label='View photo 3' if page.locator('#languageSelect').input_value()=='en' else '查看相片 3'
-        preview.get_by_role('link',name=photo_label,exact=True).click()
-        assert preview.locator('.fp-photo-strip').evaluate('(strip)=>strip.scrollLeft>strip.clientWidth')
+        preview.locator('.fp-photo-label').nth(2).click()
+        assert preview.locator('.fp-photo-choice').nth(2).is_checked()
+        assert preview.locator('.fp-slide:visible').count()==1
         page.locator('#navToggle').focus();page.locator('#navToggle').press('Space');page.wait_for_timeout(400)
         assert not page.locator('#navToggle').is_checked()
         with_nav_off=BeautifulSoup(page.evaluate('FOFProfileStudio.generate("arman","en")'),'html.parser')
         assert len(with_nav_off.select('.fp-slide'))==3 and not with_nav_off.select('script,.fp-nav')
         solo=BeautifulSoup(page.evaluate('FOFProfileStudio.generate("cclee","en")'),'html.parser')
         assert len(solo.select('.fp-portrait'))==1 and not solo.select('script,.fp-gallery')
+        # Exercise the same renderer for another teacher with two and four photo URLs.
+        other_teacher_codes=page.evaluate(r'''() => {
+            const studio = FOFProfileStudio, backup = studio.backupObject();
+            const teachers = backup.data['教師資料'];
+            const other = teachers.find(teacher => teacher['教師ID'] === 'cclee');
+            const photos = studio.photoURLs(other).concat(studio.photoURLs(teachers.find(teacher => teacher['教師ID'] === 'arman')));
+            return [2,4].map(count => {
+                other['相片網址'] = photos.slice(0,count).join('\n');
+                studio.restoreData(backup, 'multi-photo test', false);
+                return studio.generate('cclee','en');
+            });
+        }''')
         gallery=browser.new_page(java_script_enabled=False, viewport={'width':1200,'height':950})
         photo_sources=json.loads((ROOT/'data/studio_v3_11_source_additions.json').read_text())
         photos={url:WORK/f'arman_photo_{i}.img' for i,url in enumerate(photo_sources['arman_gallery']['zh']['photo_urls'])}
@@ -159,19 +172,30 @@ def main():
             if file and file.exists():route.fulfill(path=str(file),content_type='image/jpeg' if file.read_bytes().startswith(b'\xff\xd8') else 'image/png')
             else:route.abort()
         gallery.route('**/*',lambda route:route.continue_() if route.request.url.startswith(base) else route_photo(route))
-        for lang,width in [('en',1200),('zh',390)]:
-            file=WORK/f'arman_{lang}_cms_preview.html'
-            file.write_text('<!doctype html><meta charset="UTF-8">'+arman_codes[lang])
+        layouts=[('arman_en',1200,3,arman_codes['en']),('arman_zh',390,3,arman_codes['zh'])]
+        layouts.extend((f'cclee_{count}',390,count,code) for count,code in zip((2,4),other_teacher_codes))
+        for name,width,count,code in layouts:
+            file=WORK/f'{name}_cms_preview.html'
+            # On the CMS, a fragment link can resolve against the homepage rather than the profile.
+            file.write_text('<!doctype html><meta charset="UTF-8"><base href="/">'+code)
             gallery.set_viewport_size({'width':width,'height':950})
-            gallery.goto(base+file.relative_to(ROOT).as_posix(),wait_until='load')
+            url=base+file.relative_to(ROOT).as_posix()
+            gallery.goto(url,wait_until='load')
             assert gallery.evaluate('document.documentElement.scrollWidth<=innerWidth')
-            strip=gallery.locator('.fp-photo-strip')
-            assert strip.evaluate('(el)=>el.scrollWidth>=el.clientWidth*3')
-            for number in (3,2,1):
-                gallery.locator('.fp-gallery-controls a').nth(number-1).click()
-                assert strip.evaluate('(el,index)=>Math.abs(el.scrollLeft-el.clientWidth*index)<3',number-1)
-            gallery.locator('.fp-native-nav a[href="#fp-publications"]').click()
-            assert gallery.url.endswith('#fp-publications')
+            group=gallery.locator('.fp-gallery')
+            assert group.evaluate('(el)=>el.scrollWidth<=el.clientWidth')
+            choices=group.locator('.fp-photo-choice')
+            assert choices.count()==count and choices.first.is_checked()
+            for index in reversed(range(count)):
+                group.locator('.fp-photo-label').nth(index).click()
+                assert gallery.url==url and choices.nth(index).is_checked()
+                assert group.locator('.fp-slide:visible').count()==1
+                assert group.locator('.fp-slide').nth(index).is_visible()
+            choices.first.focus()
+            choices.first.press('ArrowRight')
+            assert choices.nth(1).is_checked() and gallery.url==url
+            if name.startswith('arman'):
+                group.screenshot(path=str(WORK/f'{name}_gallery.png'))
         gallery.close()
         # Export final deliverables from a clean fixture, including all newly introduced fields in XLSX.
         page.evaluate('FOFProfileStudio.restoreData('+json.dumps(backup,ensure_ascii=False)+',"final fixture")')
@@ -199,17 +223,18 @@ def main():
             assert z.testzip() is None;assert len([n for n in z.namelist() if n.endswith('_ClickrAdmin.txt')])==86
             for lang in ('ZH','EN'):
                 code=BeautifulSoup(z.read(f'arman_{lang}_ClickrAdmin.txt').decode(),'html.parser')
-                assert len(code.select('.fp-photo-strip img'))==3 and not code.select('script')
+                assert len(code.select('.fp-gallery img'))==3 and not code.select('script,.fp-gallery a')
                 assert code.select_one('.fp-native-nav a[href="#fp-publications"]')
                 assert code.find('h3',string='Media Coverage' if lang=='EN' else '媒體報道')
             assert '確認資料' not in z.read('arman_ZH_ClickrAdmin.txt').decode()
         assert page.evaluate('FOFProfileStudio.persist()')
         assert not errors,errors
-        report={'studio_version':'3.11','teachers':43,'generated_bilingual_pages':len(generated),'media_rows':30,'gallery_photos':3,
+        report={'studio_version':'3.11.1','teachers':43,'generated_bilingual_pages':len(generated),'media_rows':30,'gallery_photos':3,
                 'dates_and_undated_items_keep_source_order':True,'original_research_and_career_rows_preserved':True,
                 'optional_bilingual_highlights':True,'bilingual_highlights_aligned_below_supervisor':True,
                 'review_confirmation_and_edit_invalidation':True,'specific_bilingual_diagnostics':True,
-                'review_survives_json_restore_and_reload':True,'gallery_number_links_with_javascript_disabled':True,
+                'review_survives_json_restore_and_reload':True,'gallery_switches_with_javascript_disabled_and_homepage_base':True,
+                'gallery_click_and_keyboard_work_with_two_three_and_four_photos':True,
                 'single_photo_static_multi_photo_gallery':True,'multi_photo_output_script_free_with_or_without_chapter_links':True,
                 'json_and_xlsx_roundtrip':True,'batch_zip_code_files':86,'local_storage_saved':True,'mobile_no_horizontal_overflow':True,'runtime_errors':errors}
         (ROOT/'data/studio_v3_11_validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2));browser.close()
