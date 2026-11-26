@@ -131,33 +131,48 @@ def main():
         # No fabricated months and exact day precision are retained by both date renderers.
         assert page.evaluate('FOFProfileStudio.careerDate("2024年3月5日 – 2025年4月6日","en")')=='2024/03/05 – 2025/04/06'
         assert page.evaluate('FOFProfileStudio.careerDate("2024 – 至今","en")')=='2024 – Present'
-        # Gallery remains active without section navigation; single-image pages have no gallery script or controls.
+        # Multi-photo output must work even with JavaScript disabled and chapter links enabled.
+        assert page.locator('#navToggle').is_checked()
+        arman_codes={lang:page.evaluate('(lang)=>FOFProfileStudio.generate("arman",lang)',lang) for lang in ('zh','en')}
+        for code in arman_codes.values():
+            markup=BeautifulSoup(code,'html.parser')
+            assert not markup.select('script')
+            assert not any(key.lower().startswith('on') for element in markup.find_all(True) for key in element.attrs)
+            assert len(markup.select('.fp-photo-strip img'))==3
+            assert markup.select_one('.fp-native-nav a[href="#fp-publications"]')
+        page.evaluate('FOFProfileStudio.selectTeacher("arman")')
+        preview=page.frame_locator('#preview')
+        photo_label='View photo 3' if page.locator('#languageSelect').input_value()=='en' else '查看相片 3'
+        preview.get_by_role('link',name=photo_label,exact=True).click()
+        assert preview.locator('.fp-photo-strip').evaluate('(strip)=>strip.scrollLeft>strip.clientWidth')
         page.locator('#navToggle').focus();page.locator('#navToggle').press('Space');page.wait_for_timeout(400)
         assert not page.locator('#navToggle').is_checked()
-        arman_code=page.evaluate('FOFProfileStudio.generate("arman","en")')
-        assert page.evaluate('FOFProfileStudio.photoURLs(FOFProfileStudio.getData()["教師資料"].find(t=>t["教師ID"]==="arman")).length')==3,page.evaluate('FOFProfileStudio.getData()["教師資料"].find(t=>t["教師ID"]==="arman")["相片網址"]')
-        solo_code=page.evaluate('FOFProfileStudio.generate("cclee","en")')
-        assert '<script>' in arman_code and 'data-gallery=' in arman_code
-        assert '<script>' not in solo_code and 'data-gallery=' not in solo_code
-        gallery=browser.new_page(viewport={'width':1200,'height':950});gallery.on('pageerror',lambda e:errors.append(str(e)))
+        with_nav_off=BeautifulSoup(page.evaluate('FOFProfileStudio.generate("arman","en")'),'html.parser')
+        assert len(with_nav_off.select('.fp-slide'))==3 and not with_nav_off.select('script,.fp-nav')
+        solo=BeautifulSoup(page.evaluate('FOFProfileStudio.generate("cclee","en")'),'html.parser')
+        assert len(solo.select('.fp-portrait'))==1 and not solo.select('script,.fp-gallery')
+        gallery=browser.new_page(java_script_enabled=False, viewport={'width':1200,'height':950})
         photo_sources=json.loads((ROOT/'data/studio_v3_11_source_additions.json').read_text())
         photos={url:WORK/f'arman_photo_{i}.img' for i,url in enumerate(photo_sources['arman_gallery']['zh']['photo_urls'])}
         def route_photo(route):
             file=photos.get(route.request.url)
             if file and file.exists():route.fulfill(path=str(file),content_type='image/jpeg' if file.read_bytes().startswith(b'\xff\xd8') else 'image/png')
             else:route.abort()
-        gallery.route('**/*',route_photo);gallery.set_content(arman_code,wait_until='load')
-        assert gallery.locator('.fp-slide.is-active').count()==1
-        gallery.locator('[data-gallery="next"]').click();assert gallery.locator('.fp-gallery-status').inner_text()=='2 / 3'
-        gallery.locator('[data-gallery="previous"]').click();assert gallery.locator('.fp-gallery-status').inner_text()=='1 / 3'
-        gallery.locator('[data-gallery="toggle"]').click();assert gallery.locator('[data-gallery="toggle"]').inner_text()=='Play'
-        gallery.emulate_media(reduced_motion='reduce');assert gallery.locator('[data-gallery="toggle"]').inner_text()=='Play'
-        gallery.emulate_media(reduced_motion='no-preference');gallery.locator('[data-gallery="toggle"]').click();gallery.mouse.click(1100,10)
-        gallery.wait_for_timeout(4700);assert gallery.locator('.fp-gallery-status').inner_text()!='1 / 3'
-        gallery.locator('[data-gallery="toggle"]').click()
-        gallery.screenshot(path=str(WORK/'arman_desktop.png'),full_page=False)
-        gallery.set_viewport_size({'width':390,'height':900});assert gallery.evaluate('document.documentElement.scrollWidth<=innerWidth')
-        gallery.screenshot(path=str(WORK/'arman_mobile.png'),full_page=False);gallery.close()
+        gallery.route('**/*',lambda route:route.continue_() if route.request.url.startswith(base) else route_photo(route))
+        for lang,width in [('en',1200),('zh',390)]:
+            file=WORK/f'arman_{lang}_cms_preview.html'
+            file.write_text('<!doctype html><meta charset="UTF-8">'+arman_codes[lang])
+            gallery.set_viewport_size({'width':width,'height':950})
+            gallery.goto(base+file.relative_to(ROOT).as_posix(),wait_until='load')
+            assert gallery.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            strip=gallery.locator('.fp-photo-strip')
+            assert strip.evaluate('(el)=>el.scrollWidth>=el.clientWidth*3')
+            for number in (3,2,1):
+                gallery.locator('.fp-gallery-controls a').nth(number-1).click()
+                assert strip.evaluate('(el,index)=>Math.abs(el.scrollLeft-el.clientWidth*index)<3',number-1)
+            gallery.locator('.fp-native-nav a[href="#fp-publications"]').click()
+            assert gallery.url.endswith('#fp-publications')
+        gallery.close()
         # Export final deliverables from a clean fixture, including all newly introduced fields in XLSX.
         page.evaluate('FOFProfileStudio.restoreData('+json.dumps(backup,ensure_ascii=False)+',"final fixture")')
         page.evaluate('FOFProfileStudio.selectTeacher("arman")');page.locator('#confirmTeacherButton').click();page.locator('#confirmationAcknowledgement').check();page.locator('#confirmReviewButton').click()
@@ -182,8 +197,11 @@ def main():
         zip_path=ROOT/'FOF_Profile_Codes_All_Faculty_2026-11-18.zip';download.value.save_as(str(zip_path))
         with zipfile.ZipFile(zip_path) as z:
             assert z.testzip() is None;assert len([n for n in z.namelist() if n.endswith('_ClickrAdmin.txt')])==86
-            code=BeautifulSoup(z.read('arman_EN_ClickrAdmin.txt').decode(),'html.parser')
-            assert len(code.select('.fp-slide'))==3 and code.find('h3',string='Media Coverage')
+            for lang in ('ZH','EN'):
+                code=BeautifulSoup(z.read(f'arman_{lang}_ClickrAdmin.txt').decode(),'html.parser')
+                assert len(code.select('.fp-photo-strip img'))==3 and not code.select('script')
+                assert code.select_one('.fp-native-nav a[href="#fp-publications"]')
+                assert code.find('h3',string='Media Coverage' if lang=='EN' else '媒體報道')
             assert '確認資料' not in z.read('arman_ZH_ClickrAdmin.txt').decode()
         assert page.evaluate('FOFProfileStudio.persist()')
         assert not errors,errors
@@ -191,8 +209,8 @@ def main():
                 'dates_and_undated_items_keep_source_order':True,'original_research_and_career_rows_preserved':True,
                 'optional_bilingual_highlights':True,'bilingual_highlights_aligned_below_supervisor':True,
                 'review_confirmation_and_edit_invalidation':True,'specific_bilingual_diagnostics':True,
-                'review_survives_json_restore_and_reload':True,'gallery_controls_autoplay_and_reduced_motion':True,
-                'single_photo_static_multi_photo_slideshow':True,'slideshow_independent_of_section_navigation':True,
+                'review_survives_json_restore_and_reload':True,'gallery_number_links_with_javascript_disabled':True,
+                'single_photo_static_multi_photo_gallery':True,'multi_photo_output_script_free_with_or_without_chapter_links':True,
                 'json_and_xlsx_roundtrip':True,'batch_zip_code_files':86,'local_storage_saved':True,'mobile_no_horizontal_overflow':True,'runtime_errors':errors}
         (ROOT/'data/studio_v3_11_validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2));browser.close()
     server.shutdown()

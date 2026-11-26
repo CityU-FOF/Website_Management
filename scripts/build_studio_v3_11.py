@@ -17,10 +17,14 @@ replace(' return{bad,notes:[...new Set(notes)]};'," return{bad,notes:d['教師�
 replace(" return out+'\\n#fof-faculty-profile .fp-citation", " return out+FEATURE_CSS+'\\n#fof-faculty-profile .fp-citation")
 replace("'時間':en?careerDate(txt(r['時間（英文）'])||r['時間'],'en'):careerDate(r['時間'])","'時間':en?careerDate(txt(r['時間（英文）'])||r['時間'],'en'):careerDate(r['時間'])") # Assert legacy bilingual dates stay intact.
 replace("list(mod(name)),'fp-extra-'+(++n)","(timelineModules.includes(name)?timelineHTML(mod(name),lang):list(mod(name))),'fp-extra-'+(++n)")
-replace("(web(p['相片網址'])?'':' fp-no-photo')","(photoURLs(p).length?'':' fp-no-photo')")
-replace("(web(p['相片網址'])?'<div class=\"fp-photo-frame\"><img class=\"fp-portrait\" src=\"'+esc(web(p['相片網址']))+'\" alt=\"'+esc(name)+'\" /></div>':'')","galleryHTML(p,name,lang)")
+replace("(web(p['相片網址'])?'':' fp-no-photo')","(photos.length?'':' fp-no-photo')")
+replace("(web(p['相片網址'])?'<div class=\"fp-photo-frame\"><img class=\"fp-portrait\" src=\"'+esc(web(p['相片網址']))+'\" alt=\"'+esc(name)+'\" /></div>':'')","galleryHTML(photos,id,name,lang)")
 replace("(mentor&&setting('顯示導師標籤','是')==='是'?'<div class=\"fp-supervision\"><span class=\"fp-supervisor-tag\">'+esc(mentor)+'</span></div>':'')", "recognitionHTML(p,mentor,lang)")
-replace(" if(enableNav&&nav.length)result+=", " if(photoURLs(p).length>1)result+='\\n<script>\\n'+PROFILE_SLIDESHOW+'\\n<\\/script>';\n if(enableNav&&nav.length)result+=")
+replace(" const enableNav=$('navToggle').checked;", " const photos=photoURLs(p), multiPhoto=photos.length>1;\n const enableNav=$('navToggle').checked;")
+replace(" const navhtml=enableNav&&nav.length?", """ const nativeNav='<div class="fp-nav fp-native-nav" role="navigation" aria-label="'+(en?'Profile sections':'個人頁章節')+'">'+nav.map(([anchor,title])=>'<a href="#'+esc(anchor)+'">'+esc(title)+'</a>').join('')+'</div>';
+ const navhtml=enableNav&&nav.length?(multiPhoto?nativeNav:""")
+replace(".join('')+'</div>':'';\n const mentorMap=", ".join('')+'</div>'):'';\n const mentorMap=")
+replace(" if(enableNav&&nav.length)result+=", " if(enableNav&&nav.length&&!multiPhoto)result+=")
 features=(ROOT/'scripts/studio_v3_11_features.js').read_text()
 replace("const STORAGE_KEY=",features+"\nconst STORAGE_KEY=")
 replace("'行政職務（英文）','導師標籤（英文）'],","'行政職務（英文）','導師標籤（英文）','亮點標籤','亮點標籤（英文）','核對指紋','確認時間','最後編輯時間'],")
@@ -34,10 +38,12 @@ replace("renderEditor(index);changed();}","renderEditor(index);changed(data[kind
 replace("?Number(value):value;changed();if(kind===", "?Number(value):value;changed(kind==='共用設定'?null:data[kind][index]['教師ID']);if(kind===")
 replace("const check=validate(data);errors=check.bad;warnings=[...languageNotes($('teacherSelect').value,lang),...check.notes];", "const check=validate(data);errors=check.bad;warnings=reviewMessages($('teacherSelect').value);renderReview();")
 replace("(errors.length?errors:warnings).slice(0,10)","(errors.length?errors:warnings)")
-replace("($('navToggle').checked?'含章節定位程式':'不含JavaScript')","(currentCode.includes('<script>')?'含章節定位／輪播程式':'不含JavaScript')")
+replace("($('navToggle').checked?'含章節定位程式':'不含JavaScript')","(currentCode.includes('<script>')?'含章節定位程式':'不含JavaScript')")
+# Fragment links in srcdoc otherwise resolve against the Studio document's URL.
+replace("+currentCode+'</body></html>'", "+currentCode.replaceAll('<a href=\"#','<a href=\"about:srcdoc#')+'</body></html>'")
 replace("時間（共用；學術經驗用YYYY/MM）","時間（共用；YYYY、YYYY/MM 或 YYYY/MM/DD）")
 replace("'來源網址','資料狀態'];","'來源網址'];")
-replace("+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',choices:k==='資料狀態'?['待核對','已核對']:undefined})).join('')", "+f('亮點標籤',{long:true,label:'中文亮點標籤（選填；每行一個，例如 全球前2%頂尖科學家）'})+f('亮點標籤（英文）',{long:true,label:'English highlights（optional; one per line）'})+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',long:k==='相片網址',label:k==='相片網址'?'相片網址（每行一個；一張顯示靜態相，多張自動輪播）':undefined})).join('')")
+replace("+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',choices:k==='資料狀態'?['待核對','已核對']:undefined})).join('')", "+f('亮點標籤',{long:true,label:'中文亮點標籤（選填；每行一個，例如 全球前2%頂尖科學家）'})+f('亮點標籤（英文）',{long:true,label:'English highlights（optional; one per line）'})+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',long:k==='相片網址',label:k==='相片網址'?'相片網址（每行一個；多張可滑動或點選編號）':undefined})).join('')")
 replace("個人簡介每段一項。","個人簡介每段一項。研究項目、學術服務與指導、獎項及媒體報道以日期／內容兩欄顯示；沒有日期可留空，項目只按「排序」排列，不按日期重排。")
 replace("canonicalModule(data['內容明細'][Number(t.dataset.index)]?.['模組'])==='學術工作經驗'","['學術工作經驗',...timelineModules].includes(canonicalModule(data['內容明細'][Number(t.dataset.index)]?.['模組']))")
 # Preserve day precision in dates where the original provides it.
@@ -61,6 +67,7 @@ $('cancelReviewButton').addEventListener('click',()=>{$('confirmationDialog').cl
 """
 replace("window.addEventListener('beforeunload'",bindings+"\nwindow.addEventListener('beforeunload'")
 replace("window.FOFProfileStudio={readExcel", "window.FOFProfileStudio={reviewIssues,reviewState,reviewFingerprint,confirmed,startEditing,requestConfirmation,photoURLs,tagValues,readExcel")
-replace('若出406，可關閉章節定位，再複製HTML/CSS版測試。','多相輪播包含播放程式，關閉章節定位後仍會保留；請先在測試頁預覽。')
+replace(' 啟用章節定位程式</label>',' 顯示章節定位</label>')
+replace('若出406，可關閉章節定位，再複製HTML/CSS版測試。','多相片頁面使用 HTML／CSS 相簿及章節連結。單相片頁面可關閉章節定位，匯出純 HTML／CSS 版本。')
 (ROOT/'FOF_Profile_Studio_v3_11.html').write_text(s)
 print('Built standalone Studio 3.11',len(s))

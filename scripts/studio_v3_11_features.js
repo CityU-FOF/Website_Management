@@ -7,35 +7,16 @@ const FEATURE_CSS=`
 #fof-faculty-profile .fp-recognition .fp-highlight{display:block;max-width:100%;margin:0;padding:5px 10px;border:1px solid #b5822b;border-inline-start:3px solid #b5822b;border-radius:6px;background:#f8e5b4;color:#543604;font-size:13px;font-weight:700;line-height:1.5;overflow-wrap:anywhere;}
 #fof-faculty-profile .fp-dated-list{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px 18px;}
 #fof-faculty-profile .fp-dated-list .fp-entry-body{min-width:0;overflow-wrap:anywhere;}
-#fof-faculty-profile .fp-gallery{margin-bottom:18px;}
-#fof-faculty-profile .fp-slideshow{position:relative;aspect-ratio:1/1.08;overflow:hidden;}
-#fof-faculty-profile .fp-slideshow .fp-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none;}
-#fof-faculty-profile .fp-slideshow .fp-slide.is-active{opacity:1;}
-#fof-faculty-profile .fp-slideshow .fp-portrait{width:100%;height:100%;object-fit:contain;margin:0;background:#f5f7f5;}
-#fof-faculty-profile .fp-gallery-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:9px;}
-#fof-faculty-profile .fp-gallery-controls button{font:inherit;font-size:12px;line-height:1.5;background:#fff;color:#245d49;border:1px solid #b5c9bd;border-radius:4px;padding:4px 9px;}
-#fof-faculty-profile .fp-gallery-controls button:focus-visible{outline:2px solid #b18b45;outline-offset:2px;}
-#fof-faculty-profile .fp-gallery-status{font-size:12px;color:#56665d;}
+#fof-faculty-profile .fp-gallery{min-width:0;margin-bottom:18px;}
+#fof-faculty-profile .fp-photo-strip{display:flex;width:100%;aspect-ratio:1/1.08;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;border:1px solid #d5dfd8;border-radius:12px;background:#fff;}
+#fof-faculty-profile .fp-gallery .fp-slide{flex:0 0 100%;min-width:0;height:100%;padding:5px;scroll-snap-align:start;}
+#fof-faculty-profile .fp-slide .fp-portrait{display:block;width:100%;height:100%;object-fit:contain;margin:0;border-radius:8px;background:#f5f7f5;}
+#fof-faculty-profile .fp-gallery-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:9px;}
+#fof-faculty-profile .fp-gallery-controls a{display:inline-flex;min-width:30px;min-height:30px;align-items:center;justify-content:center;font-size:12px;background:#fff;color:#245d49;border:1px solid #b5c9bd;border-radius:4px;}
+#fof-faculty-profile .fp-gallery-controls a:focus-visible,#fof-faculty-profile .fp-photo-strip:focus-visible{outline:2px solid #b18b45;outline-offset:2px;}
+#fof-faculty-profile .fp-native-nav a{font-size:13px;font-weight:700;padding:6px 0;}
 @media(max-width:570px){#fof-faculty-profile .fp-dated-list{grid-template-columns:85px minmax(0,1fr);gap:12px 10px;}#fof-faculty-profile .fp-profile:has(.fp-gallery){display:block;}#fof-faculty-profile .fp-gallery{max-width:260px;margin:0 auto 18px;}}
-@media(prefers-reduced-motion:reduce){#fof-faculty-profile .fp-slideshow .fp-slide{transition:none;}}
 `;
-const PROFILE_SLIDESHOW='('+function(){
- const root=document.getElementById('fof-faculty-profile');
- if(!root)return;
- root.querySelectorAll('.fp-gallery').forEach(gallery=>{
-  const slides=[...gallery.querySelectorAll('.fp-slide')],previous=gallery.querySelector('[data-gallery="previous"]'),next=gallery.querySelector('[data-gallery="next"]'),toggle=gallery.querySelector('[data-gallery="toggle"]'),status=gallery.querySelector('.fp-gallery-status');
-  if(slides.length<2)return;
-  const en=root.lang==='en',motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index=0,paused=motion.matches,hovered=false,focused=false,timer;
-  function show(value,manual=false){index=(value+slides.length)%slides.length;slides.forEach((slide,i)=>{slide.classList.toggle('is-active',i===index);slide.setAttribute('aria-hidden',String(i!==index));});status.textContent=(index+1)+' / '+slides.length;status.setAttribute('aria-live',manual?'polite':'off');}
-  function schedule(){clearInterval(timer);toggle.textContent=paused?(en?'Play':'播放'):(en?'Pause':'暫停');toggle.setAttribute('aria-label',paused?(en?'Play photo slideshow':'播放相片輪播'):(en?'Pause photo slideshow':'暫停相片輪播'));toggle.setAttribute('aria-pressed',String(paused));if(!paused&&!hovered&&!focused&&!document.hidden)timer=setInterval(()=>show(index+1),4500);}
-  previous.onclick=()=>{show(index-1,true);schedule();};next.onclick=()=>{show(index+1,true);schedule();};toggle.onclick=()=>{paused=!paused;schedule();};
-  gallery.addEventListener('mouseenter',()=>{hovered=true;schedule();});gallery.addEventListener('mouseleave',()=>{hovered=false;schedule();});
-  gallery.addEventListener('focusin',()=>{focused=true;schedule();});gallery.addEventListener('focusout',e=>{if(!gallery.contains(e.relatedTarget)){focused=false;schedule();}});
-  gallery.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();show(index+(e.key==='ArrowLeft'?-1:1),true);schedule();}});
-  document.addEventListener('visibilitychange',schedule);motion.addEventListener('change',e=>{if(e.matches)paused=true;schedule();});show(0);schedule();
- });
-}.toString()+')();';
 function photoInputs(p){return txt(p['相片網址']).split(/\r?\n/).map(txt).filter(Boolean);}
 function photoURLs(p){return [...new Set(photoInputs(p).map(web).filter(Boolean))];}
 function tagValues(p,lang){return txt(p[lang==='en'?'亮點標籤（英文）':'亮點標籤']).split(/\r?\n/).map(txt).filter(Boolean);}
@@ -47,10 +28,14 @@ function recognitionHTML(p,mentor,lang){
  // Reuse the profile grid slot shared by the Chinese and English supervisor labels.
  return '<div class="fp-supervision fp-recognition">'+supervisor+highlights+'</div>';
 }
-function galleryHTML(p,name,lang){
- const photos=photoURLs(p),en=lang==='en';if(!photos.length)return '';
+function galleryHTML(photos, id, name, lang){
+ if(!photos.length)return '';
  if(photos.length===1)return '<div class="fp-photo-frame"><img class="fp-portrait" src="'+esc(photos[0])+'" alt="'+esc(name)+'" /></div>';
- return '<div class="fp-gallery" role="region" aria-roledescription="'+(en?'carousel':'輪播')+'" aria-label="'+esc(name)+(en?' photos':'相片')+'"><div class="fp-photo-frame fp-slideshow">'+photos.map((url,i)=>'<div class="fp-slide'+(!i?' is-active':'')+'" aria-hidden="'+String(i!==0)+'"><img class="fp-portrait" src="'+esc(url)+'" alt="'+esc(name)+(en?' — photo ':' — 相片 ')+(i+1)+'" /></div>').join('')+'</div><div class="fp-gallery-controls"><button type="button" data-gallery="previous" aria-label="'+(en?'Previous photo':'上一張相片')+'">‹</button><span class="fp-gallery-status" aria-live="off">1 / '+photos.length+'</span><button type="button" data-gallery="next" aria-label="'+(en?'Next photo':'下一張相片')+'">›</button><button type="button" data-gallery="toggle" aria-pressed="false">'+(en?'Pause':'暫停')+'</button></div></div>';
+ const en=lang==='en', label=en?name+' photos':name+'相片';
+ const slideID=i=>'fp-photo-'+id+'-'+lang+'-'+(i+1);
+ const slides=photos.map((url,i)=>'<div class="fp-slide" id="'+esc(slideID(i))+'"><img class="fp-portrait" src="'+esc(url)+'" alt="'+esc(label+' '+(i+1))+'" /></div>').join('');
+ const controls=photos.map((_,i)=>'<a href="#'+esc(slideID(i))+'" aria-label="'+(en?'View photo ':'查看相片 ')+(i+1)+'">'+(i+1)+'</a>').join('');
+ return '<div class="fp-gallery"><div class="fp-photo-strip" role="region" tabindex="0" aria-label="'+esc(label)+'">'+slides+'</div><div class="fp-gallery-controls">'+controls+'</div></div>';
 }
 function timelineHTML(rows,lang){
  if(!rows.length)return '';
