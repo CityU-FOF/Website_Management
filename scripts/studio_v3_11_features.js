@@ -8,11 +8,10 @@ const FEATURE_CSS=`
 #fof-faculty-profile .fp-dated-list{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px 18px;}
 #fof-faculty-profile .fp-dated-list .fp-entry-body{min-width:0;overflow-wrap:anywhere;}
 #fof-faculty-profile .fp-gallery{
- display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
- position:relative;min-width:0;gap:9px 8px;margin-bottom:18px;
+ position:relative;min-width:0;margin-bottom:18px;
 }
 #fof-faculty-profile .fp-gallery .fp-slide{
- order:-1;flex:0 0 100%;min-width:0;aspect-ratio:1/1.08;padding:5px;
+ width:100%;aspect-ratio:1/1.08;padding:5px;
  overflow:hidden;border:1px solid #d5dfd8;border-radius:12px;background:#fff;
 }
 #fof-faculty-profile .fp-gallery .fp-portrait{
@@ -20,21 +19,22 @@ const FEATURE_CSS=`
  margin:0;border-radius:8px;background:#f5f7f5;
 }
 #fof-faculty-profile .fp-gallery .fp-photo-choice{
- position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none;
+ position:absolute;top:0;left:0;width:1px;height:1px;margin:0;opacity:0;pointer-events:none;
 }
-#fof-faculty-profile .fp-gallery .fp-photo-label{display:none;}
-#fof-faculty-profile .fp-photo-choice + .fp-photo-label{
- display:inline-flex;min-width:36px;min-height:36px;align-items:center;justify-content:center;
- padding:0 8px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;line-height:1.2;
- color:#245d49;background:#fff;border:1px solid #b5c9bd;border-radius:6px;
+#fof-faculty-profile .fp-gallery-controls{display:none;justify-content:center;gap:8px;margin-top:9px;}
+#fof-faculty-profile .fp-photo-choice + .fp-gallery-panel .fp-gallery-controls{display:flex;}
+#fof-faculty-profile .fp-photo-arrow{
+ display:inline-flex;width:40px;height:36px;align-items:center;justify-content:center;
+ font:600 19px/1 system-ui,sans-serif;color:#245d49;background:#fff;
+ border:1px solid #b5c9bd;border-radius:6px;
 }
-#fof-faculty-profile .fp-photo-choice:checked + .fp-photo-label{
- color:#fff;background:#126045;border-color:#126045;
-}
-#fof-faculty-profile .fp-photo-choice:focus-visible + .fp-photo-label{
+#fof-faculty-profile label.fp-photo-arrow{cursor:pointer;}
+#fof-faculty-profile label.fp-photo-arrow:hover{background:#edf5f0;border-color:#126045;}
+#fof-faculty-profile .fp-photo-arrow.is-disabled{color:#82998c;background:#f5f7f6;border-color:#e0e8e3;}
+#fof-faculty-profile .fp-photo-choice:focus-visible + .fp-gallery-panel .fp-slide{
  outline:2px solid #b18b45;outline-offset:2px;
 }
-#fof-faculty-profile .fp-photo-choice:not(:checked) + .fp-photo-label + .fp-slide{display:none;}
+#fof-faculty-profile .fp-photo-choice:not(:checked) + .fp-gallery-panel{display:none;}
 #fof-faculty-profile .fp-native-nav a{font-size:13px;font-weight:700;padding:6px 0;}
 @media(max-width:570px){#fof-faculty-profile .fp-dated-list{grid-template-columns:85px minmax(0,1fr);gap:12px 10px;}#fof-faculty-profile .fp-profile:has(.fp-gallery){display:block;}#fof-faculty-profile .fp-gallery{max-width:260px;margin:0 auto 18px;}}
 `;
@@ -54,12 +54,22 @@ function galleryHTML(photos, id, name, lang){
  if(photos.length===1)return '<div class="fp-photo-frame"><img class="fp-portrait" src="'+esc(photos[0])+'" alt="'+esc(name)+'" /></div>';
  const en=lang==='en', label=en?name+' photos':name+'相片';
  const group=esc('fp-photo-'+id+'-'+lang);
+ const inputID=index=>group+'-'+(index+1);
+ const arrow=(index,direction)=>{
+  const previous=direction==='previous';
+  const symbol=previous?'←':'→';
+  const title=previous?(en?'Previous photo':'上一張相片'):(en?'Next photo':'下一張相片');
+  const attrs=' title="'+title+'" data-photo-direction="'+direction+'"';
+  return index<0||index>=photos.length
+   ?'<span class="fp-photo-arrow is-disabled"'+attrs+'>'+symbol+'</span>'
+   :'<label class="fp-photo-arrow" for="'+inputID(index)+'"'+attrs+'>'+symbol+'</label>';
+ };
+ // Labels select neighboring radio inputs without navigating or running a script.
  const choices=photos.map((url,index)=>{
-  const number=index+1, inputID=group+'-'+number;
-  const choiceLabel=(en?'View photo ':'查看相片 ')+number;
-  return '<input class="fp-photo-choice" type="radio" name="'+group+'" id="'+inputID+'" aria-label="'+choiceLabel+'"'+(index===0?' checked':'')+'>'
-   +'<label class="fp-photo-label" for="'+inputID+'">'+number+'</label>'
-   +'<div class="fp-slide"><img class="fp-portrait" src="'+esc(url)+'" alt="'+esc(label+' '+number)+'" /></div>';
+  const number=index+1, choiceLabel=(en?'Photo ':'相片 ')+number+' / '+photos.length;
+  return '<input class="fp-photo-choice" type="radio" name="'+group+'" id="'+inputID(index)+'" aria-label="'+choiceLabel+'"'+(index===0?' checked':'')+'>'
+   +'<div class="fp-gallery-panel"><div class="fp-slide"><img class="fp-portrait" src="'+esc(url)+'" alt="'+esc(label+' '+number)+'" /></div>'
+   +'<div class="fp-gallery-controls" aria-hidden="true">'+arrow(index-1,'previous')+arrow(index+1,'next')+'</div></div>';
  }).join('');
  return '<div class="fp-gallery" role="group" aria-label="'+esc(label)+'">'+choices+'</div>';
 }

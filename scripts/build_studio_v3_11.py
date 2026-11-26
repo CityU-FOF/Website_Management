@@ -7,8 +7,8 @@ def replace(old,new,count=1):
  global s
  assert s.count(old)==count,(old[:100],s.count(old),count)
  s=s.replace(old,new)
-replace('工具 v3.10','工具 v3.11.1')
-s=s.replace('Studio 3.10','Studio 3.11.1').replace('Template 3.10','Template 3.11.1').replace("appVersion:'3.10'","appVersion:'3.11.1'").replace('FOF_Profile_Common_Style_v3_10.css','FOF_Profile_Common_Style_v3_11.css')
+replace('工具 v3.10','工具 v3.11.2')
+s=s.replace('Studio 3.10','Studio 3.11.2').replace('Template 3.10','Template 3.11.2').replace("appVersion:'3.10'","appVersion:'3.11.2'").replace('FOF_Profile_Common_Style_v3_10.css','FOF_Profile_Common_Style_v3_11.css')
 replace("'獎項','專長與軟件','其他公開資訊'","'獎項','媒體報道','專長與軟件','其他公開資訊'")
 replace("'獎項':'Awards'","'獎項':'Awards','媒體報道':'Media Coverage'")
 replace("  if(txt(p['相片網址'])&&!web(p['相片網址']))bad.push(id+' 相片網址須使用http或https');","   photoInputs(p).forEach((url,j)=>{if(!web(url))bad.push(id+' 第'+(j+1)+'個相片網址須使用http或https');});")
@@ -43,7 +43,7 @@ replace("($('navToggle').checked?'含章節定位程式':'不含JavaScript')","(
 replace("+currentCode+'</body></html>'", "+currentCode.replaceAll('<a href=\"#','<a href=\"about:srcdoc#')+'</body></html>'")
 replace("時間（共用；學術經驗用YYYY/MM）","時間（共用；YYYY、YYYY/MM 或 YYYY/MM/DD）")
 replace("'來源網址','資料狀態'];","'來源網址'];")
-replace("+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',choices:k==='資料狀態'?['待核對','已核對']:undefined})).join('')", "+f('亮點標籤',{long:true,label:'中文亮點標籤（選填；每行一個，例如 全球前2%頂尖科學家）'})+f('亮點標籤（英文）',{long:true,label:'English highlights（optional; one per line）'})+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',long:k==='相片網址',label:k==='相片網址'?'相片網址（每行一個；多張可點選編號切換）':undefined})).join('')")
+replace("+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',choices:k==='資料狀態'?['待核對','已核對']:undefined})).join('')", "+f('亮點標籤',{long:true,label:'中文亮點標籤（選填；每行一個，例如 全球前2%頂尖科學家）'})+f('亮點標籤（英文）',{long:true,label:'English highlights（optional; one per line）'})+'<div class=\"field-heading wide\">共用資料（兩個版本同步）</div>'+common.map(k=>f(k,{readonly:k==='教師ID',long:k==='相片網址',label:k==='相片網址'?'相片網址（每行一個；多張可用左右箭嘴切換）':undefined})).join('')")
 replace("個人簡介每段一項。","個人簡介每段一項。研究項目、學術服務與指導、獎項及媒體報道以日期／內容兩欄顯示；沒有日期可留空，項目只按「排序」排列，不按日期重排。")
 replace("canonicalModule(data['內容明細'][Number(t.dataset.index)]?.['模組'])==='學術工作經驗'","['學術工作經驗',...timelineModules].includes(canonicalModule(data['內容明細'][Number(t.dataset.index)]?.['模組']))")
 # Preserve day precision in dates where the original provides it.
@@ -68,6 +68,6 @@ $('cancelReviewButton').addEventListener('click',()=>{$('confirmationDialog').cl
 replace("window.addEventListener('beforeunload'",bindings+"\nwindow.addEventListener('beforeunload'")
 replace("window.FOFProfileStudio={readExcel", "window.FOFProfileStudio={reviewIssues,reviewState,reviewFingerprint,confirmed,startEditing,requestConfirmation,photoURLs,tagValues,readExcel")
 replace(' 啟用章節定位程式</label>',' 顯示章節定位</label>')
-replace('若出406，可關閉章節定位，再複製HTML/CSS版測試。','多相片頁面可點選編號原位換相，使用純 HTML／CSS。單相片頁面可關閉章節定位，匯出純 HTML／CSS 版本。')
+replace('若出406，可關閉章節定位，再複製HTML/CSS版測試。','多相片頁面可用左右箭嘴原位換相，使用純 HTML／CSS。單相片頁面可關閉章節定位，匯出純 HTML／CSS 版本。')
 (ROOT/'FOF_Profile_Studio_v3_11.html').write_text(s)
-print('Built standalone Studio 3.11.1',len(s))
+print('Built standalone Studio 3.11.2',len(s))

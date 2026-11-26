@@ -83,12 +83,16 @@ def main():
                   const mentor = document.querySelector('.fp-supervisor-tag').getBoundingClientRect();
                   const highlight = document.querySelector('.fp-highlight');
                   const badge = highlight.getBoundingClientRect();
+                  const style = getComputedStyle(highlight);
                   const contact = document.querySelector('.fp-contact').getBoundingClientRect();
                   const profile = document.querySelector('.fp-profile').getBoundingClientRect();
                   return badge.height > 0 && Math.abs(badge.x - mentor.x) < 1
                     && badge.top >= mentor.bottom && badge.top - mentor.bottom <= 10
                     && badge.bottom < contact.top && badge.right <= profile.right
-                    && getComputedStyle(highlight).backgroundColor === 'rgb(248, 229, 180)';
+                    && style.backgroundColor === 'rgb(248, 229, 180)'
+                    && style.borderLeftWidth === '3px' && style.borderRightWidth === '1px'
+                    && style.borderLeftColor === 'rgb(181, 130, 43)' && style.color === 'rgb(84, 54, 4)'
+                    && style.fontWeight === '700' && style.borderRadius === '6px';
                 }'''), (result['id'], result['lang'], width)
             if result['id'] == '_adriancheung':
                 layout.set_viewport_size({'width': 550, 'height': 900})
@@ -139,12 +143,12 @@ def main():
             assert not markup.select('script')
             assert not any(key.lower().startswith('on') for element in markup.find_all(True) for key in element.attrs)
             assert len(markup.select('.fp-gallery img'))==3 and not markup.select('.fp-gallery a,.fp-gallery form')
-            assert len(markup.select('.fp-photo-choice[checked] + .fp-photo-label + .fp-slide'))==1
+            assert len(markup.select('.fp-photo-choice[checked] + .fp-gallery-panel .fp-slide'))==1
             assert markup.select_one('.fp-native-nav a[href="#fp-publications"]')
         page.evaluate('FOFProfileStudio.selectTeacher("arman")')
         preview=page.frame_locator('#preview')
-        preview.locator('.fp-photo-label').nth(2).click()
-        assert preview.locator('.fp-photo-choice').nth(2).is_checked()
+        preview.locator('label.fp-photo-arrow[data-photo-direction="next"]:visible').click()
+        assert preview.locator('.fp-photo-choice').nth(1).is_checked()
         assert preview.locator('.fp-slide:visible').count()==1
         page.locator('#navToggle').focus();page.locator('#navToggle').press('Space');page.wait_for_timeout(400)
         assert not page.locator('#navToggle').is_checked()
@@ -186,11 +190,18 @@ def main():
             assert group.evaluate('(el)=>el.scrollWidth<=el.clientWidth')
             choices=group.locator('.fp-photo-choice')
             assert choices.count()==count and choices.first.is_checked()
-            for index in reversed(range(count)):
-                group.locator('.fp-photo-label').nth(index).click()
-                assert gallery.url==url and choices.nth(index).is_checked()
-                assert group.locator('.fp-slide:visible').count()==1
-                assert group.locator('.fp-slide').nth(index).is_visible()
+            arrows=group.locator('.fp-photo-arrow:visible')
+            assert arrows.all_text_contents()==['←','→']
+            assert group.locator('.fp-photo-arrow.is-disabled:visible').get_attribute('data-photo-direction')=='previous'
+            for direction,indices in [('next',range(1,count)),('previous',range(count-2,-1,-1))]:
+                for index in indices:
+                    group.locator(f'label.fp-photo-arrow[data-photo-direction="{direction}"]:visible').click()
+                    assert gallery.url==url and choices.nth(index).is_checked()
+                    assert group.locator('.fp-slide:visible').count()==1
+                    assert group.locator('.fp-slide').nth(index).is_visible()
+                    assert arrows.all_text_contents()==['←','→']
+                disabled=group.locator('.fp-photo-arrow.is-disabled:visible')
+                assert disabled.count()==1 and disabled.get_attribute('data-photo-direction')==direction
             choices.first.focus()
             choices.first.press('ArrowRight')
             assert choices.nth(1).is_checked() and gallery.url==url
@@ -229,12 +240,13 @@ def main():
             assert '確認資料' not in z.read('arman_ZH_ClickrAdmin.txt').decode()
         assert page.evaluate('FOFProfileStudio.persist()')
         assert not errors,errors
-        report={'studio_version':'3.11.1','teachers':43,'generated_bilingual_pages':len(generated),'media_rows':30,'gallery_photos':3,
+        report={'studio_version':'3.11.2','teachers':43,'generated_bilingual_pages':len(generated),'media_rows':30,'gallery_photos':3,
                 'dates_and_undated_items_keep_source_order':True,'original_research_and_career_rows_preserved':True,
                 'optional_bilingual_highlights':True,'bilingual_highlights_aligned_below_supervisor':True,
+                'approved_gold_highlight_appearance_preserved':True,
                 'review_confirmation_and_edit_invalidation':True,'specific_bilingual_diagnostics':True,
                 'review_survives_json_restore_and_reload':True,'gallery_switches_with_javascript_disabled_and_homepage_base':True,
-                'gallery_click_and_keyboard_work_with_two_three_and_four_photos':True,
+                'gallery_previous_next_and_keyboard_work_with_two_three_and_four_photos':True,
                 'single_photo_static_multi_photo_gallery':True,'multi_photo_output_script_free_with_or_without_chapter_links':True,
                 'json_and_xlsx_roundtrip':True,'batch_zip_code_files':86,'local_storage_saved':True,'mobile_no_horizontal_overflow':True,'runtime_errors':errors}
         (ROOT/'data/studio_v3_11_validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2));browser.close()
